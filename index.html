@@ -21,12 +21,10 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--gray-light); color: var(--text-dark); line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* Multi-Window Application States */
         #auth-page { display: block; }
         #app-dashboard { display: none; }
         #expired-screen { display: none; }
 
-        /* Unified Site Headers */
         nav {
             background: white; padding: 1rem 2rem; display: flex; justify-content: space-between;
             align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
@@ -42,7 +40,6 @@
         .btn-secondary { background: transparent; color: var(--text-dark); border: 1px solid var(--border); }
         .btn-secondary:hover { background: var(--gray-light); }
 
-        /* Corporate Intro Hero Layout Grid */
         .auth-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; flex: 1; }
         .hero-text h1 { font-size: 3rem; color: var(--dark); line-height: 1.2; margin-bottom: 1.5rem; }
         .auth-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border); }
@@ -52,26 +49,25 @@
         .auth-toggle { margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
         .auth-toggle span { color: var(--primary); cursor: pointer; font-weight: 600; }
 
-        /* Standard Application Workspace Grid */
         .db-container { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 65px - 40px); }
         .sidebar { background: white; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
         .trial-banner { background: #fff7ed; border: 1px solid #ffedd5; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
         .trial-banner h4 { color: #c2410c; font-size: 0.9rem; margin-bottom: 0.25rem; }
         .trial-banner p { font-size: 0.85rem; color: #7c2d12; font-family: monospace; font-weight: bold; }
-        
+        .premium-badge { background: #e0f2fe; color: #0369a1; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-left: 0.5rem; }
+
         .module-list { list-style: none; }
         .module-item { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 0.5rem; cursor: pointer; font-weight: 500; color: var(--text-dark); }
         .module-item.active { background: #eff6ff; color: var(--primary); }
-        .module-item.locked { color: var(--text-muted); opacity: 0.6; }
+        .module-item.locked { color: var(--text-muted); }
 
         .main-content { padding: 2.5rem; overflow-y: auto; background: #f1f5f9; }
         .workspace { background: white; border-radius: 12px; padding: 2.5rem; border: 1px solid var(--border); min-height: 85%; }
 
-        /* Premium Video Interface Config */
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; background: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; color: white; text-align: center; }
+        .video-container i { font-size: 4rem; color: var(--primary); margin-bottom: 1rem; cursor: pointer; transition: transform 0.2s; }
+        .video-container i:hover { transform: scale(1.1); }
 
-        /* Lecture Tab Switchers */
         .lecture-tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; gap: 1rem; }
         .tab-link { padding: 0.75rem 1rem; border: none; background: none; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); cursor: pointer; position: relative; }
         .tab-link.active { color: var(--primary); }
@@ -84,7 +80,6 @@
         .paywall-modal { background: white; padding: 3rem; border-radius: 16px; max-width: 500px; width: 100%; text-align: center; position: relative; }
         .full-blocker { width: 100vw; height: 100vh; background: var(--dark); color: white; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
 
-        /* Global Sticky Footers */
         footer { background: white; padding: 0.5rem 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); font-weight: 500; }
         footer span { color: var(--dark); font-weight: 700; letter-spacing: 0.05em; }
     </style>
@@ -145,21 +140,17 @@
             <aside class="sidebar">
                 <div>
                     <div class="trial-banner" id="timer-banner-box">
-                        <h4><i class="fa-solid fa-clock"></i> Trial Time Remaining</h4>
+                        <h4><i class="fa-solid fa-clock"></i> Account State</h4>
                         <p id="countdown-clock">07d 00h 00m 00s</p>
                     </div>
                     
                     <h3 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Curriculum Map</h3>
-                    <ul class="module-list">
-                        <li class="module-item active"><span>Week 1: Foundations</span><i class="fa-solid fa-circle-play" style="color:var(--primary)"></i></li>
-                        <li class="module-item locked" onclick="triggerPaywall('Week 2: Deep Learning')"><span>Week 2: Deep Learning</span><i class="fa-solid fa-lock"></i></li>
-                        <li class="module-item locked" onclick="triggerPaywall('Week 3: GenAI & LLMs')"><span>Week 3: GenAI & LLMs</span><i class="fa-solid fa-lock"></i></li>
-                        <li class="module-item locked" onclick="triggerPaywall('Week 4: MLOps Pipelines')"><span>Week 4: MLOps & Capstone</span><i class="fa-solid fa-lock"></i></li>
-                    </ul>
+                    <ul class="module-list" id="curriculum-menu-list">
+                        </ul>
                 </div>
 
                 <div>
-                    <button class="btn" onclick="triggerPaywall('Full Premium Syllabus Upgrade')" style="width:100%; margin-bottom:1rem;"><i class="fa-solid fa-bolt"></i> Upgrade to Premium</button>
+                    <button class="btn" id="sidebar-upgrade-btn" onclick="triggerPaywall('Full Premium Syllabus Upgrade')" style="width:100%; margin-bottom:1rem;"><i class="fa-solid fa-bolt"></i> Upgrade to Premium</button>
                     <div style="background:#f1f5f9; padding:0.5rem; border-radius:6px; font-size:0.7rem; border:1px dashed var(--text-muted); text-align:center;">
                         <span style="color:var(--danger); cursor:pointer; font-weight:bold;" onclick="simulateExpiration()">[Test 7-Day Expire Lock]</span>
                     </div>
@@ -177,20 +168,20 @@
         <div style="background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 16px; max-width: 550px; border: 1px solid rgba(255,255,255,0.1);">
             <div style="font-size: 3.5rem; color: var(--danger); margin-bottom: 1rem;"><i class="fa-solid fa-hourglass-end"></i></div>
             <h2>Your 1-Week Trial Has Expired</h2>
-            <p style="color: #94a3b8; margin: 1.5rem 0;">Your training footprint configuration allocation space has concluded its limits. Upgrade your track account profile to re-establish workspace clusters.</p>
-            <button class="btn" style="width: 100%; padding:1rem;" onclick="alert('Payment pipeline initialization point.')">Purchase Full Program Access ($499)</button>
-            <p style="margin-top:1.5rem; font-size:0.8rem; color:#64748b; cursor:pointer;" id="clear-memory-trigger" onclick="clearMemory()">[Reset Sandbox Profile Memory]</p>
+            <p style="color: #94a3b8; margin: 1.5rem 0;">Your training footprint configuration allocation space has concluded its limits. Upgrade your account to re-establish access immediately.</p>
+            <button class="btn" style="width: 100%; padding:1rem;" onclick="processPremiumPurchase()">Purchase Full Program Access ($499)</button>
+            <p style="margin-top:1.5rem; font-size:0.8rem; color:#64748b; cursor:pointer;" onclick="clearMemory()">[Reset Sandbox Profile Memory]</p>
         </div>
     </div>
 
     <div class="modal-overlay" id="paywall-modal">
         <div class="paywall-modal">
             <button style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closePaywall()"><i class="fa-solid fa-xmark"></i></button>
-            <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
+            <div style="font-size: 3rem; color: #eab308; margin-bottom: 1rem;"><i class="fa-solid fa-credit-card"></i></div>
             <h2 id="modal-title">Premium Access Required</h2>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">Upgrade to open premium advanced models, code compilation clusters, and verified certification tracks.</p>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Unlock weeks 2, 3, and 4 instantly including all code engines and certificate credentials.</p>
             <div style="font-size: 2.5rem; font-weight:800; margin: 1.5rem 0;">$499</div>
-            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Stripe Interface Redirection Pipeline.')">Unlock Program Now</button>
+            <button class="btn" style="width: 100%; padding: 1rem; background: var(--success);" onclick="processPremiumPurchase()">Simulate Secure Payment Checkpoint</button>
         </div>
     </div>
 
@@ -199,6 +190,67 @@
     <script>
         let clockTimer;
         const LIMIT_MS = 7 * 24 * 60 * 60 * 1000;
+        let activeWeek = 1;
+
+        // MULTI-WEEK INTERNAL DATA REPOSITORY
+        const courseData = {
+            1: {
+                title: "Week 1: Data Preprocessing & Core Systems Foundations",
+                desc: "Learn how machines clean, manage, and prepare messy structural data before constructing networks.",
+                concept: "Imagine cooking a meal, but your vegetables were just pulled straight from the ground—they are covered in dirt, unpeeled, and unchopped. You wouldn't throw them right into a hot pan!<br><br>In AI engineering, raw data is exactly like those dirty vegetables. It often arrives with missing files, duplicate inputs, or messy spacing formatting. <strong>Data Preprocessing</strong> is the crucial cleaning stage where we wash, normalize, and organize our data numbers so that AI models can read them smoothly without crashing or rendering broken math logic.",
+                vocab: "<li><strong>NaN Values:</strong> Short for 'Not a Number'. This simply means a piece of structural information is completely missing from your data sheet.</li><li><strong>MinMax Scaling:</strong> Shrinking wild numbers down so they all sit evenly balanced directly between <code>0</code> and <code>1</code>.</li>",
+                why: "If you supply an artificial intelligence algorithm with broken, dirty data parameters, it will always output wrong answers. Computer scientists refer to this iron law as <strong>'Garbage In, Garbage Out'</strong>.",
+                labName: "Run Data Preprocessing Simulation Script",
+                command: "python3 pipeline_scalar.py",
+                terminalOutput: "<span style='color:#10b981;'>[INFO]</span> Scanning system for missing NaN values... Found 14 unmapped elements.<br><br><span style='color:#10b981;'>[INFO]</span> Imputing data mean replacement metrics successfully.<br><br><span style='color:#f59e0b;'>[SUCCESS]</span> Normalized feature vectors scaled perfectly within ranges [0, 1].",
+                quizQ: "What numerical ranges does MinMax scaling compress mathematical data values between?",
+                optA: "Between -100 and +100 bounds",
+                optB: "Balanced exactly between 0 and 1",
+                correctId: "optB"
+            },
+            2: {
+                title: "Week 2: Artificial Neural Networks & Deep Architectures",
+                desc: "Construct interconnected deep layer nodes to map advanced mathematical equations.",
+                concept: "Neural Networks are built to mimic how biological brains learn things. Instead of writing fixed rules by hand, we stack layers of artificial 'neurons' together. As information passes through these layers, the network automatically figures out patterns—like learning what a cat looks like by analyzing pixels.",
+                vocab: "<li><strong>Weights & Biases:</strong> Internal knobs and dials that the AI system tweaks to adjust the importance of different data features.</li><li><strong>Activation Function:</strong> The gatekeeper switch that decides whether a neuron should fire or stay silent.</li>",
+                why: "Deep Learning drives modern speech recognition and image systems. Without multi-layer stacking systems, software cannot parse complex unorganized real-world patterns.",
+                labName: "Compile 3-Layer Backpropagation Network",
+                command: "python3 neural_network_weights.py",
+                terminalOutput: "<span style='color:#10b981;'>[INFO]</span> Initializing 3-Layer matrix grid weights randomly...<br><br><span style='color:#10b981;'>[INFO]</span> Epoch 1/10 - loss calculation matrix factor: 0.842<br><br><span style='color:#10b981;'>[INFO]</span> Epoch 10/10 - error margin stabilized at: 0.012<br><br><span style='color:#f59e0b;'>[SUCCESS]</span> Core structural weights matched and compiled successfully.",
+                quizQ: "What are the internal adjustable values tweaked during training called?",
+                optA: "Weights and Biases",
+                optB: "Static Framework Constants",
+                correctId: "optA"
+            },
+            3: {
+                title: "Week 3: Generative AI & Large Language Models (LLMs)",
+                desc: "Discover text generation models and foundational vector embedding systems.",
+                concept: "Generative AI doesn't just analyze data—it creates brand-new data! Large Language Models do this by turning words into long lists of coordinate numbers called embeddings. The model uses these numbers to guess what word should logically come next based on everything it has read before.",
+                vocab: "<li><strong>Tokenization:</strong> Chopping sentences up into tiny bite-sized pieces (like words or characters) so a computer can count them.</li><li><strong>Vector Embeddings:</strong> Turning words into coordinate numbers so the system can measure how similar their meanings are.</li>",
+                why: "Understanding embeddings is how companies build custom chatbots, automated code helpers, and search engines that truly understand what you mean when you type.",
+                labName: "Initialize Tokenized Embedding Context Window",
+                command: "python3 transformer_attention.py",
+                terminalOutput: "<span style='color:#10b981;'>[INFO]</span> Tokenizing text string: 'Build with AI'... Generated 4 discrete tokens.<br><br><span style='color:#10b981;'>[INFO]</span> project vector configurations across 768 space coordinates.<br><br><span style='color:#f59e0b;'>[SUCCESS]</span> Next-token probability calculations computed safely.",
+                quizQ: "What is the process of breaking a text string down into individual word segments called?",
+                optA: "Tokenization",
+                optB: "Hyperparameter Overclocking",
+                correctId: "optA"
+            },
+            4: {
+                title: "Week 4: MLOps, Deployments & Corporate Capstone Projects",
+                desc: "Package finalized trained systems into web containers for live web consumers.",
+                concept: "Building an AI model on your laptop is only half the battle. In the real world, you have to pack that model up, host it on a secure web server, and make sure it can handle thousands of users asking it questions at the exact same time without crashing. This workflow is called MLOps.",
+                vocab: "<li><strong>API Endpoint:</strong> The live link or door that apps use to send data directly to an AI model and receive predictions back.</li><li><strong>Model Drift:</strong> When an AI model gets worse over time because the real-world data it's looking at has changed.</li>",
+                why: "An AI system is useless if it sits locked on an engineer's machine. MLOps turns mathematical models into real, working products that companies can sell.",
+                labName: "Containerize Model Pipeline Into Live FastAPI Endpoint",
+                command: "docker-compose up --build",
+                terminalOutput: "<span style='color:#10b981;'>[INFO]</span> Compiling application environment instructions... loaded package states.<br><br><span style='color:#10b981;'>[INFO]</span> Starting FastAPI web instance cluster portal...<br><br><span style='color:#f59e0b;'>[SUCCESS]</span> Application interface live and routing active predictions at port 8080.",
+                quizQ: "What term describes an AI model losing its predictive accuracy over time?",
+                optA: "Model Drift",
+                optB: "Token Rust",
+                correctId: "optA"
+            }
+        };
 
         window.onload = function() {
             if (localStorage.getItem('user_email')) { evaluateSession(); } else { toggleAuthMode('signup'); }
@@ -214,13 +266,14 @@
             localStorage.setItem('user_name', document.getElementById('reg-name').value);
             localStorage.setItem('user_email', document.getElementById('reg-email').value);
             localStorage.setItem('user_created_at', new Date().getTime());
+            localStorage.setItem('account_tier', 'trial');
             evaluateSession();
         }
 
         function handleLogin(e) {
             e.preventDefault();
             if (document.getElementById('log-email').value !== localStorage.getItem('user_email')) {
-                alert("Email profile identity missing from device local storage runtime matrices."); return;
+                alert("Account profile not found in local system registers."); return;
             }
             evaluateSession();
         }
@@ -234,17 +287,31 @@
 
         function evaluateSession() {
             const signupTime = parseInt(localStorage.getItem('user_created_at'), 10);
-            if ((new Date().getTime() - signupTime) >= LIMIT_MS) {
+            const tier = localStorage.getItem('account_tier') || 'trial';
+            
+            if (tier === 'trial' && (new Date().getTime() - signupTime) >= LIMIT_MS) {
                 document.getElementById('auth-page').style.display = 'none';
                 document.getElementById('app-dashboard').style.display = 'none';
                 document.getElementById('expired-screen').style.display = 'flex';
                 return;
             }
+            
             document.getElementById('auth-page').style.display = 'none';
             document.getElementById('app-dashboard').style.display = 'block';
-            document.getElementById('user-display').innerText = `👤 ${localStorage.getItem('user_name')} (Trial Account)`;
             
-            runClock(signupTime);
+            if(tier === 'premium') {
+                document.getElementById('user-display').innerHTML = `👑 ${localStorage.getItem('user_name')} <span class="premium-badge">Premium Pass</span>`;
+                document.getElementById('countdown-clock').innerText = "Unlimited Lifetime Access";
+                document.getElementById('countdown-clock').style.color = "#10b981";
+                document.getElementById('sidebar-upgrade-btn').style.display = "none";
+                document.getElementById('timer-banner-box').style.background = "#f0fdf4";
+                document.getElementById('timer-banner-box').style.borderColor = "#bbf7d0";
+            } else {
+                document.getElementById('user-display').innerText = `👤 ${localStorage.getItem('user_name')} (Trial Account)`;
+                runClock(signupTime);
+            }
+            
+            renderSidebarMenu();
             renderWorkspace();
         }
 
@@ -263,6 +330,41 @@
             tick(); clockTimer = setInterval(tick, 1000);
         }
 
+        function renderSidebarMenu() {
+            const tier = localStorage.getItem('account_tier');
+            const menuContainer = document.getElementById('curriculum-menu-list');
+            
+            let html = `
+                <li class="module-item ${activeWeek === 1 ? 'active' : ''}" onclick="selectWeek(1)">
+                    <span>Week 1: Foundations</span><i class="fa-solid fa-circle-play" style="color:${activeWeek === 1 ? 'var(--primary)' : 'var(--text-muted)'}"></i>
+                </li>
+            `;
+            
+            for(let w = 2; w <= 4; w++) {
+                let name = w === 2 ? "Deep Learning" : w === 3 ? "GenAI & LLMs" : "MLOps Pipelines";
+                if(tier === 'premium') {
+                    html += `
+                        <li class="module-item ${activeWeek === w ? 'active' : ''}" onclick="selectWeek(${w})">
+                            <span>Week ${w}: ${name}</span><i class="fa-solid fa-circle-play" style="color:${activeWeek === w ? 'var(--primary)' : 'var(--text-muted)'}"></i>
+                        </li>
+                    `;
+                } else {
+                    html += `
+                        <li class="module-item locked" onclick="triggerPaywall('Week ${w}: ${name}')" style="opacity:0.6;">
+                            <span>Week ${w}: ${name}</span><i class="fa-solid fa-lock" style="color:var(--text-muted);"></i>
+                        </li>
+                    `;
+                }
+            }
+            menuContainer.innerHTML = html;
+        }
+
+        function selectWeek(w) {
+            activeWeek = w;
+            renderSidebarMenu();
+            renderWorkspace();
+        }
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-link').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
@@ -271,16 +373,37 @@
             document.getElementById('pane-' + tabId).classList.add('active');
         }
 
-        // EXPLICIT WORKSPACE CONTENT ELEMENT INJECTION LAYER
+        function processPremiumPurchase() {
+            localStorage.setItem('account_tier', 'premium');
+            closePaywall();
+            document.getElementById('expired-screen').style.display = 'none';
+            alert("Success! Your premium payment simulation processed cleanly. All system curriculum metrics unlocked.");
+            evaluateSession();
+        }
+
+        function triggerPaywall(t) { 
+            document.getElementById('modal-title').innerText = "Unlock " + t; 
+            document.getElementById('paywall-modal').style.display = 'flex'; 
+        }
+        function closePaywall() { document.getElementById('paywall-modal').style.display = 'none'; }
+        function simulateExpiration() { localStorage.setItem('user_created_at', new Date().getTime() - (8 * 24 * 60 * 60 * 1000)); evaluateSession(); }
+        function clearMemory() { localStorage.clear(); window.location.reload(); }
+
+        // CORE SYLLABUS WORKSPACE RENDER ENGINE
         function renderWorkspace() {
+            const data = courseData[activeWeek];
             document.getElementById('content-body').innerHTML = `
                 <div style="margin-bottom: 1.5rem;">
-                    <h1 style="font-size: 1.8rem; color: var(--dark);">Week 1: Data Preprocessing & Core Platform Systems</h1>
-                    <p style="color:var(--text-muted); font-size:0.95rem;">Learn how machines clean, manage, and prepare wild dataset arrays before constructing baseline models.</p>
+                    <h1 style="font-size: 1.8rem; color: var(--dark);">${data.title}</h1>
+                    <p style="color:var(--text-muted); font-size:0.95rem;">${data.desc}</p>
                 </div>
 
                 <div class="video-container">
-                <iframe src="https://www.youtube-nocookie.com/embed/jZz7MAt4w8k" title="AITrain Introductory Core Lecture Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div style="padding: 2rem;">
+                        <i class="fa-solid fa-circle-play" onclick="alert('Starting offline media stream mirror configuration profile...')"></i>
+                        <h3>Interactive Lecture Concept Video</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Click icon to trigger local media presentation pipeline fallback layers.</p>
+                    </div>
                 </div>
 
                 <div class="lecture-tabs">
@@ -290,66 +413,60 @@
                 </div>
 
                 <div class="tab-pane active" id="pane-concept">
-                    <h4 style="margin-bottom: 0.5rem; color: var(--dark);">What is Data Preprocessing?</h4>
-                    <p style="font-size: 0.95rem; color: var(--text-dark);">Imagine cooking a meal, but your vegetables were just pulled straight from the ground—they are covered in dirt, unpeeled, and unchopped. You wouldn't throw them right into a hot pan! <br><br>In AI engineering, raw data is exactly like those dirty vegetables. It often arrives with missing files, duplicate inputs, or messy spacing formatting. <strong>Data Preprocessing</strong> is the crucial cleaning stage where we wash, normalize, and organize our data numbers so that AI programs can read them cleanly without crashing or failing calculations.</p>
+                    <h4 style="margin-bottom: 0.5rem; color: var(--dark);">Syllabus Theoretical Foundation</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-dark);">${data.concept}</p>
                 </div>
 
                 <div class="tab-pane" id="pane-vocab">
-                    <h4 style="margin-bottom: 0.75rem; color: var(--dark);">Plain-English Cheat Sheet Explanations:</h4>
+                    <h4 style="margin-bottom: 0.75rem; color: var(--dark);">Plain-English Explanations:</h4>
                     <ul style="padding-left: 1.25rem; font-size: 0.95rem; display:flex; flex-direction:column; gap:0.5rem;">
-                        <li><strong>NaN Values:</strong> An abbreviation for "Not a Number". This simply points out that a piece of information is entirely missing (like a user leaving a required field completely empty on a sign-up form).</li>
-                        <li><strong>MinMax Scaling:</strong> Shrinking giant mathematical values down so they all scale evenly directly between the numbers <code>0</code> and <code>1</code>. This helps make computer pipeline system math run extremely fast!</li>
+                        ${data.vocab}
                     </ul>
                 </div>
 
                 <div class="tab-pane" id="pane-why">
-                    <h4 style="margin-bottom: 0.5rem; color: var(--dark);">Real-World Engineering Application:</h4>
-                    <p style="font-size: 0.95rem; color: var(--text-dark);">If you supply an artificial intelligence algorithm with broken, dirty data values, it will always output wrong answers. Computer scientists refer to this foundational iron law as <strong>"Garbage In, Garbage Out"</strong>. Mastering data engineering techniques keeps production enterprise platforms reliable and secure.</p>
+                    <h4 style="margin-bottom: 0.5rem; color: var(--dark);">Real-World Value Goal:</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-dark);">${data.why}</p>
                 </div>
 
                 <div style="background:white; border:1px solid var(--border); padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
                     <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
                         <div style="flex:1;">
-                            <span style="background:#e0f2fe; color:#0369a1; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">LAB 1.1</span>
-                            <h3 style="margin-top:0.5rem; font-size:1.1rem;">Run Data Cleaning Simulation Script</h3>
+                            <span style="background:#e0f2fe; color:#0369a1; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">LAB ${activeWeek}.1</span>
+                            <h3 style="margin-top:0.5rem; font-size:1.1rem;">${data.labName}</h3>
                         </div>
-                        <button class="btn" onclick="document.getElementById('term').style.display='block'">Execute Script</button>
+                        <button class="btn" onclick="document.getElementById('term').style.display='block'">Execute Runtime Script</button>
                     </div>
                     <div id="term" style="display:none;" class="terminal-box">
-                        $ python3 pipeline_scalar.py<br>
-                        <span style="color:#10b981;">[INFO]</span> Scanning system for missing NaN values... Found 14 unmapped data elements.<br>
-                        <span style="color:#10b981;">[INFO]</span> Imputing data mean replacement metrics successfully.<br>
-                        <span style="color:#f59e0b;">[SUCCESS]</span> Normalized feature vectors scaled perfectly within ranges [0, 1].
+                        $ ${data.command}<br><br>
+                        ${data.terminalOutput}
                     </div>
                 </div>
 
                 <div style="background:white; border:1px solid var(--border); padding:1.5rem; border-radius:8px;">
-                    <span style="background:#fef3c7; color:#d97706; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">QUIZ 1</span>
+                    <span style="background:#fef3c7; color:#d97706; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">QUIZ ${activeWeek}</span>
                     <h3 style="margin:0.5rem 0 1rem 0; font-size:1.1rem;">Check Your Knowledge Baseline</h3>
-                    <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.5rem;">What numerical ranges does MinMax scaling compress mathematical data values between?</p>
-                    <label style="display:block; margin-bottom:0.5rem; cursor:pointer;"><input type="radio" name="qz" id="wrong"> Between -100 and +100 bounds</label>
-                    <label style="display:block; margin-bottom:1rem; cursor:pointer;"><input type="radio" name="qz" id="correct"> Balanced exactly between 0 and 1</label>
-                    <button class="btn" onclick="checkQz()">Submit Evaluation Log</button>
+                    <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.5rem;">${data.quizQ}</p>
+                    <label style="display:block; margin-bottom:0.5rem; cursor:pointer;"><input type="radio" name="qz" id="optA"> ${data.optA}</label>
+                    <label style="display:block; margin-bottom:1rem; cursor:pointer;"><input type="radio" name="qz" id="optB"> ${data.optB}</label>
+                    <button class="btn" onclick="checkQz('${data.correctId}')">Submit Evaluation Log</button>
                     <div id="ans" style="margin-top:1rem; font-weight:bold; display:none;"></div>
                 </div>
 
                 <div style="margin-top: 3rem; text-align: center; font-size: 0.75rem; color: var(--text-muted);">
-                    Want to reset your login name or clear data states? <span style="color: var(--danger); cursor: pointer; font-weight: bold; text-decoration: underline;" onclick="clearMemory()">Click here to wipe local testing profile cookies</span>
+                    Want to reset your profile details or clear data states? <span style="color: var(--danger); cursor: pointer; font-weight: bold; text-decoration: underline;" onclick="clearMemory()">Click here to wipe testing cache cookies</span>
                 </div>
             `;
         }
 
-        function checkQz() {
+        function checkQz(correctId) {
             const ans = document.getElementById('ans'); ans.style.display = 'block';
-            if(document.getElementById('correct').checked) {
-                ans.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-circle-check"></i> Correct! MinMax scaling compresses data bounded tightly between 0 and 1.</span>`;
-            } else { ans.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Review the information tabs above and try your selection path variant again!</span>`; }
+            if(document.getElementById(correctId).checked) {
+                ans.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-circle-check"></i> Correct! Evaluation logged securely to learning profile matrices.</span>`;
+            } else { 
+                ans.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Review the vocabulary information cards above and modify your choice path!</span>`; 
+            }
         }
-
-        function simulateExpiration() { localStorage.setItem('user_created_at', new Date().getTime() - (8 * 24 * 60 * 60 * 1000)); evaluateSession(); }
-        function triggerPaywall(t) { document.getElementById('modal-title').innerText = "Unlock " + t; document.getElementById('paywall-modal').style.display = 'flex'; }
-        function closePaywall() { document.getElementById('paywall-modal').style.display = 'none'; }
-        function clearMemory() { localStorage.clear(); window.location.reload(); }
     </script>
 </body>
 </html>
