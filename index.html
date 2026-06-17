@@ -16,11 +16,10 @@
             --border: #e2e8f0;
             --success: #10b981;
             --danger: #ef4444;
-            --warning: #f97316;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--gray-light); color: var(--text-dark); line-height: 1.5; }
+        body { background-color: var(--gray-light); color: var(--text-dark); line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; }
 
         /* App Layout Containers */
         #auth-page { display: block; }
@@ -42,10 +41,9 @@
         .btn:hover { background: var(--primary-hover); }
         .btn-secondary { background: transparent; color: var(--text-dark); border: 1px solid var(--border); }
         .btn-secondary:hover { background: var(--gray-light); }
-        .btn-danger { background: var(--danger); color: white; }
 
-        /* Auth Layout Switcher */
-        .auth-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        /* Introduction & Auth Grid Layout */
+        .auth-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; flex: 1; }
         .hero-text h1 { font-size: 3rem; color: var(--dark); line-height: 1.2; margin-bottom: 1.5rem; }
         .auth-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border); }
         .form-group { margin-bottom: 1.25rem; }
@@ -55,7 +53,7 @@
         .auth-toggle span { color: var(--primary); cursor: pointer; font-weight: 600; }
 
         /* Dashboard Architecture */
-        .db-container { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 65px); }
+        .db-container { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 65px - 40px); }
         .sidebar { background: white; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
         .trial-banner { background: #fff7ed; border: 1px solid #ffedd5; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
         .trial-banner h4 { color: #c2410c; font-size: 0.9rem; margin-bottom: 0.25rem; }
@@ -69,44 +67,55 @@
         .main-content { padding: 2.5rem; overflow-y: auto; background: #f1f5f9; }
         .workspace { background: white; border-radius: 12px; padding: 2.5rem; border: 1px solid var(--border); min-height: 85%; }
 
-        /* Lab & Grid Content Cards */
-        .lab-card { background: var(--gray-light); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
-        .terminal-box { background: #0f172a; color: #38bdf8; font-family: 'Courier New', Courier, monospace; padding: 1rem; border-radius: 6px; margin-top: 1rem; font-size: 0.9rem; overflow-x: auto; }
+        /* Lab Elements */
+        .terminal-box { background: #0f172a; color: #38bdf8; font-family: 'Courier New', Courier, monospace; padding: 1rem; border-radius: 6px; margin-top: 1rem; font-size: 0.9rem; }
         
-        /* Modals & Blockers */
+        /* Modals & Full Blockers */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 1000; }
         .paywall-modal { background: white; padding: 3rem; border-radius: 16px; max-width: 500px; width: 100%; text-align: center; position: relative; }
         .full-blocker { width: 100vw; height: 100vh; background: var(--dark); color: white; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
+
+        /* Brand Footer */
+        footer { background: white; padding: 0.5rem 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); font-weight: 500; }
+        footer span { color: var(--dark); font-weight: 700; letter-spacing: 0.05em; }
     </style>
 </head>
 <body>
 
-    <div id="auth-page">
+    <!-- AUTHENTICATION LAYER & PLATFORM INTRODUCTION -->
+    <div id="auth-page" style="flex: 1; display: flex; flex-direction: column;">
         <nav>
             <div class="logo"><i class="fa-solid fa-brain"></i> AITrain.io</div>
+            <button class="btn btn-secondary" onclick="toggleAuthMode('login')">Log In</button>
         </nav>
         <div class="auth-container">
             <div class="hero-text">
-                <span style="background:#dbeafe; color:var(--primary); padding:0.4rem 0.8rem; border-radius:20px; font-size:0.85rem; font-weight:600;">Enterprise Platform</span>
-                <h1 style="margin-top:1rem;">Deploy Production Machine Learning Systems</h1>
-                <p style="color:var(--text-muted); margin-top:1rem;">Access elite corporate training tracks, cloud execution environments, and expert code analytics logs.</p>
+                <span style="background:#dbeafe; color:var(--primary); padding:0.4rem 0.8rem; border-radius:20px; font-size:0.85rem; font-weight:600;">Corporate Training Hub</span>
+                <h1 style="margin-top:1rem;">Master Machine Learning & AI Architectures</h1>
+                <p style="color:var(--text-muted); margin-top:1rem;">An immersive, production-focused environment built for corporate teams and technical builders. Learn model preprocessing, scaling pipelines, and modern deep learning frameworks hands-on.</p>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; font-weight: 600; font-size: 0.95rem;">
+                    <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> 7-Day Free Trial</span>
+                    <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> No Credit Card Required</span>
+                </div>
             </div>
 
+            <!-- Signup Form Box -->
             <div class="auth-card" id="signup-box">
-                <h3>Create Free Trial Account</h3>
-                <p>Get instant 7-day access to Week 1 foundational models.</p>
+                <h3>Start Your 1-Week Trial</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Access Week 1 complete core frameworks instantly.</p>
                 <form onsubmit="handleSignup(event)">
                     <div class="form-group"><label>Full Name</label><input type="text" id="reg-name" required placeholder="John Doe"></div>
                     <div class="form-group"><label>Work Email</label><input type="email" id="reg-email" required placeholder="john@company.com"></div>
                     <div class="form-group"><label>Password</label><input type="password" id="reg-pass" required placeholder="••••••••"></div>
-                    <button type="submit" class="btn" style="width: 100%; padding:0.8rem;">Activate Trial Block</button>
+                    <button type="submit" class="btn" style="width: 100%; padding:0.8rem;">Activate Trial Profile</button>
                 </form>
                 <div class="auth-toggle">Already registered? <span onclick="toggleAuthMode('login')">Log In here</span></div>
             </div>
 
+            <!-- Login Form Box -->
             <div class="auth-card" id="login-box" style="display: none;">
                 <h3>Welcome Back</h3>
-                <p>Log in to access your current active training pipeline profile.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Log in to access your active learning trail states.</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group"><label>Work Email</label><input type="email" id="log-email" required placeholder="john@company.com"></div>
                     <div class="form-group"><label>Password</label><input type="password" id="log-pass" required placeholder="••••••••"></div>
@@ -117,7 +126,8 @@
         </div>
     </div>
 
-    <div id="app-dashboard">
+    <!-- MAIN DASHBOARD WEB APP LAYER -->
+    <div id="app-dashboard" style="flex: 1;">
         <nav>
             <div class="logo"><i class="fa-solid fa-brain"></i> AITrain Dashboard</div>
             <div style="display: flex; align-items: center; gap: 1.5rem;">
@@ -130,64 +140,68 @@
             <aside class="sidebar">
                 <div>
                     <div class="trial-banner" id="timer-banner-box">
-                        <h4><i class="fa-solid fa-clock"></i> Trial Window Status</h4>
+                        <h4><i class="fa-solid fa-clock"></i> Trial Time Remaining</h4>
                         <p id="countdown-clock">07d 00h 00m 00s</p>
                     </div>
                     
                     <h3 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Curriculum Map</h3>
                     <ul class="module-list">
-                        <li class="module-item active" id="mod-w1" onclick="switchSidebarTab('week1')"><span>Week 1: Foundations</span><i class="fa-solid fa-circle-play" style="color:var(--primary)"></i></li>
-                        <li class="module-item locked" onclick="triggerPaywall('Week 2: Deep Learning Architectures')"><span>Week 2: Deep Learning</span><i class="fa-solid fa-lock"></i></li>
-                        <li class="module-item locked" onclick="triggerPaywall('Week 3: Generative AI & LLMs')"><span>Week 3: GenAI & LLMs</span><i class="fa-solid fa-lock"></i></li>
+                        <li class="module-item active"><span>Week 1: Foundations</span><i class="fa-solid fa-circle-play" style="color:var(--primary)"></i></li>
+                        <li class="module-item locked" onclick="triggerPaywall('Week 2: Deep Learning')"><span>Week 2: Deep Learning</span><i class="fa-solid fa-lock"></i></li>
+                        <li class="module-item locked" onclick="triggerPaywall('Week 3: GenAI & LLMs')"><span>Week 3: GenAI & LLMs</span><i class="fa-solid fa-lock"></i></li>
                         <li class="module-item locked" onclick="triggerPaywall('Week 4: MLOps Pipelines')"><span>Week 4: MLOps & Capstone</span><i class="fa-solid fa-lock"></i></li>
                     </ul>
                 </div>
 
                 <div>
-                    <button class="btn" onclick="triggerPaywall('Full Curriculum Access Plan')" style="width:100%; margin-bottom:1rem;"><i class="fa-solid fa-bolt"></i> Upgrade to Premium</button>
-                    <div style="background:#f1f5f9; padding:0.5rem; border-radius:6px; font-size:0.7rem; border:1px dashed var(--text-muted);">
-                        <strong>Testing Tools:</strong><br>
-                        <span style="color:var(--danger); cursor:pointer; font-weight:bold;" onclick="simulateExpiration()">[Simulate 7-Day Expiration Lockout]</span>
+                    <button class="btn" onclick="triggerPaywall('Full Access Package')" style="width:100%; margin-bottom:1rem;"><i class="fa-solid fa-bolt"></i> Upgrade to Premium</button>
+                    <div style="background:#f1f5f9; padding:0.5rem; border-radius:6px; font-size:0.7rem; border:1px dashed var(--text-muted); text-align:center;">
+                        <span style="color:var(--danger); cursor:pointer; font-weight:bold;" onclick="simulateExpiration()">[Test 7-Day Expire Lock]</span>
                     </div>
                 </div>
             </aside>
 
             <main class="main-content">
                 <div class="workspace" id="content-body">
-                    </div>
+                    <!-- Week 1 Content Populated Dynamically -->
+                </div>
             </main>
         </div>
     </div>
 
+    <!-- TRIAL EXPIRED SYSTEM LOCK OUT OVERLAY -->
     <div id="expired-screen" class="full-blocker">
         <div style="background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 16px; max-width: 550px; border: 1px solid rgba(255,255,255,0.1);">
             <div style="font-size: 3.5rem; color: var(--danger); margin-bottom: 1rem;"><i class="fa-solid fa-hourglass-end"></i></div>
             <h2>Your 1-Week Trial Has Expired</h2>
-            <p style="color: #94a3b8; margin: 1.5rem 0;">To unlock runtime sandboxes, grading profiles, and access advanced modules (Weeks 2-4), please upgrade your profile registration tier.</p>
-            <button class="btn" style="width: 100%; padding:1rem;" onclick="alert('Payment processing system redirect point.')">Purchase Full Program Access ($499)</button>
-            <p style="margin-top:1.5rem; font-size:0.8rem; color:#64748b; cursor:pointer;" onclick="clearSystemMemory()">[Clear Account Memory & Start Fresh]</p>
+            <p style="color: #94a3b8; margin: 1.5rem 0;">Your active runtime profile has been paused. Upgrade to unlock weeks 2-4 and restore sandbox processing spaces.</p>
+            <button class="btn" style="width: 100%; padding:1rem;" onclick="alert('Payment checkpoint.')">Purchase Full Program Access ($499)</button>
+            <p style="margin-top:1.5rem; font-size:0.8rem; color:#64748b; cursor:pointer;" onclick="clearMemory()">[Reset Sandbox Profile Memory]</p>
         </div>
     </div>
 
+    <!-- PREMIUM LOCK MODAL -->
     <div class="modal-overlay" id="paywall-modal">
         <div class="paywall-modal">
             <button style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closePaywall()"><i class="fa-solid fa-xmark"></i></button>
             <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
             <h2 id="modal-title">Premium Access Required</h2>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">This module is blocked on your trial profile plan tier. Upgrade to unlock all advanced models, deployment instances, and code grading pipelines.</p>
-            <div style="font-size: 2.5rem; font-weight:800; margin: 1.5rem 0;">$499 <span style="font-size:1rem; color:var(--text-muted); font-weight:400;">/ full license</span></div>
-            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Stripe redirect confirmation.')">Upgrade Profile Plan</button>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Upgrade to unlock advanced architectures, evaluation clusters, and expert code reviews.</p>
+            <div style="font-size: 2.5rem; font-weight:800; margin: 1.5rem 0;">$499</div>
+            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Stripe Interface Integration Point.')">Unlock Now</button>
         </div>
     </div>
+
+    <!-- BRAND FOOTER BY NAMCODEX -->
+    <footer>Created by <span>NAMCODEX</span></footer>
 
     <script>
         let clockTimer;
         const LIMIT_MS = 7 * 24 * 60 * 60 * 1000;
 
-        // Automatically boot context profiles on script compilation entry
         window.onload = function() {
             if (localStorage.getItem('user_email')) {
-                evaluateSessionAccess();
+                evaluateSession();
             } else {
                 toggleAuthMode('signup');
             }
@@ -200,26 +214,19 @@
 
         function handleSignup(e) {
             e.preventDefault();
-            const name = document.getElementById('reg-name').value;
-            const email = document.getElementById('reg-email').value;
-            
-            localStorage.setItem('user_name', name);
-            localStorage.setItem('user_email', email);
+            localStorage.setItem('user_name', document.getElementById('reg-name').value);
+            localStorage.setItem('user_email', document.getElementById('reg-email').value);
             localStorage.setItem('user_created_at', new Date().getTime());
-            
-            evaluateSessionAccess();
+            evaluateSession();
         }
 
         function handleLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('log-email').value;
-            const savedEmail = localStorage.getItem('user_email');
-
-            if (email !== savedEmail) {
-                alert("Account profile matching that email could not be located in this local device registry scratchpad.");
+            if (document.getElementById('log-email').value !== localStorage.getItem('user_email')) {
+                alert("Email address not discovered in local device testing registry.");
                 return;
             }
-            evaluateSessionAccess();
+            evaluateSession();
         }
 
         function handleLogout() {
@@ -229,124 +236,83 @@
             toggleAuthMode('login');
         }
 
-        function evaluateSessionAccess() {
+        function evaluateSession() {
             const signupTime = parseInt(localStorage.getItem('user_created_at'), 10);
-            const delta = new Date().getTime() - signupTime;
-
-            if (delta >= LIMIT_MS) {
+            if ((new Date().getTime() - signupTime) >= LIMIT_MS) {
                 document.getElementById('auth-page').style.display = 'none';
                 document.getElementById('app-dashboard').style.display = 'none';
                 document.getElementById('expired-screen').style.display = 'flex';
                 return;
             }
-
             document.getElementById('auth-page').style.display = 'none';
-            document.getElementById('expired-screen').style.display = 'none';
             document.getElementById('app-dashboard').style.display = 'block';
             document.getElementById('user-display').innerText = `👤 ${localStorage.getItem('user_name')} (Trial Account)`;
             
-            runLiveClockEngine(signupTime);
-            renderWeek1Workspace();
+            runClock(signupTime);
+            renderWorkspace();
         }
 
-        function runLiveClockEngine(signupTime) {
+        function runClock(signupTime) {
             clearInterval(clockTimer);
-            function renderTick() {
-                const now = new Date().getTime();
-                const remainder = (signupTime + LIMIT_MS) - now;
-
-                if (remainder <= 0) {
-                    clearInterval(clockTimer);
-                    evaluateSessionAccess();
-                    return;
-                }
-
+            function tick() {
+                const remainder = (signupTime + LIMIT_MS) - new Date().getTime();
+                if (remainder <= 0) { evaluateSession(); return; }
                 const d = Math.floor(remainder / (1000*60*60*24));
                 const h = Math.floor((remainder % (1000*60*60*24)) / (1000*60*60));
                 const m = Math.floor((remainder % (1000*60*60)) / (1000*60));
                 const s = Math.floor((remainder % (1000*60)) / 1000);
-
-                const zeroPad = (val) => String(val).padStart(2, '0');
-                document.getElementById('countdown-clock').innerText = `${zeroPad(d)}d ${zeroPad(h)}h ${zeroPad(m)}m ${zeroPad(s)}s`;
+                const pad = (v) => String(v).padStart(2, '0');
+                document.getElementById('countdown-clock').innerText = `${pad(d)}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
             }
-            renderTick();
-            clockTimer = setInterval(renderTick, 1000);
+            tick(); clockTimer = setInterval(tick, 1000);
         }
 
-        // FULL WEEK 1 DATA POPULATION LOGIC ENGINE
-        function renderWeek1Workspace() {
+        function renderWorkspace() {
             document.getElementById('content-body').innerHTML = `
                 <div style="margin-bottom: 2rem;">
-                    <h1 style="color: var(--dark); font-size: 2rem;">Week 1: Data Preprocessing, Foundations & Evaluation Environments</h1>
-                    <p style="color: var(--text-muted); margin-top: 0.5rem;">Master data cleansing matrices, pipeline normalizations, and initial baseline algorithmic configurations.</p>
+                    <h1>Week 1: Data Preprocessing, Foundations & Evaluation Environments</h1>
+                    <p style="color:var(--text-muted);">Master data cleansing matrices, pipeline normalizations, and initial baseline configurations.</p>
                 </div>
-
-                <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <div>
-                            <span style="background:#e0f2fe; color:#0369a1; padding:0.25rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">LAB 1.1</span>
-                            <h3 style="margin-top:0.5rem; font-size:1.1rem;">Exploratory Data Pipeline Cleanups & Scaling Matrix Structures</h3>
+                <div style="background:white; border:1px solid var(--border); padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
+                    <div style="display:flex; justify-content:between; align-items:center; width:100%;">
+                        <div style="flex:1;">
+                            <span style="background:#e0f2fe; color:#0369a1; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">LAB 1.1</span>
+                            <h3 style="margin-top:0.5rem;">Exploratory Data Pipeline Cleanups</h3>
                         </div>
-                        <button class="btn btn-secondary" onclick="runSandboxSimulation()">Execute Script</button>
+                        <button class="btn" onclick="document.getElementById('term').style.display='block'">Execute Script</button>
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Objective: Clean missing feature labels and map array matrices using standardized scalar normalization profiles.</p>
-                    <div id="sandbox-output" style="display: none;">
-                        <div class="terminal-box">
-                            $ python3 pipeline_scalar.py<br>
-                            <span style="color:#10b981;">[INFO]</span> Initializing Data Preprocessing Stream Pipeline...<br>
-                            <span style="color:#10b981;">[INFO]</span> Locating NaN matrix values... Found 14 rows missing structural array features.<br>
-                            <span style="color:#10b981;">[INFO]</span> Imputing column mean matrices successfully.<br>
-                            <span style="color:#f59e0b;">[SUCCESS]</span> Normalized feature vectors scaled perfectly within ranges [-1, 1].
-                        </div>
+                    <div id="term" style="display:none;" class="terminal-box">
+                        $ python3 pipeline_scalar.py<br>
+                        <span style="color:#10b981;">[INFO]</span> Locating NaN matrix values... Found 14 rows missing structural array features.<br>
+                        <span style="color:#10b981;">[INFO]</span> Imputing column mean matrices successfully.<br>
+                        <span style="color:#f59e0b;">[SUCCESS]</span> Normalized feature vectors scaled perfectly within ranges [-1, 1].
                     </div>
                 </div>
-
-                <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
-                    <span style="background:#fef3c7; color:#d97706; padding:0.25rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">QUIZ 1</span>
-                    <h3 style="margin-top:0.5rem; font-size:1.1rem; margin-bottom:1rem;">Architecture Baseline Evaluation Matrix Quiz</h3>
-                    
-                    <div id="quiz-block">
-                        <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.75rem;">Which data scaling technique is most vulnerable to outlier distortions?</p>
-                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; cursor:pointer;"><input type="radio" name="quiz1" value="wrong"> Standardizer (Z-Score variance tracking)</label>
-                        <label style="display:block; margin-bottom:1rem; font-size:0.9rem; cursor:pointer;"><input type="radio" name="quiz1" value="correct"> MinMax Scaling (Boundary target ranges)</label>
-                        <button class="btn" onclick="evaluateQuizAnswers()">Submit Evaluation Log</button>
-                    </div>
-                    <div id="quiz-response" style="margin-top:1rem; font-weight:bold; display:none;"></div>
+                <div style="background:white; border:1px solid var(--border); padding:1.5rem; border-radius:8px;">
+                    <span style="background:#fef3c7; color:#d97706; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">QUIZ 1</span>
+                    <h3 style="margin:0.5rem 0 1rem 0;">Architecture Baseline Matrix Quiz</h3>
+                    <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.5rem;">Which data scaling technique is most vulnerable to outlier distortions?</p>
+                    <label style="display:block; margin-bottom:0.5rem;"><input type="radio" name="qz" id="wrong"> Standardizer (Z-Score variance tracking)</label>
+                    <label style="display:block; margin-bottom:1rem;"><input type="radio" name="qz" id="correct"> MinMax Scaling (Boundary target ranges)</label>
+                    <button class="btn" onclick="checkQz()">Submit Evaluation Log</button>
+                    <div id="ans" style="margin-top:1rem; font-weight:bold; display:none;"></div>
                 </div>
             `;
         }
 
-        function runSandboxSimulation() {
-            document.getElementById('sandbox-output').style.display = 'block';
-        }
-
-        function evaluateQuizAnswers() {
-            const selected = document.querySelector('input[name="quiz1"]:checked');
-            if(!selected) { alert("Please select a tracking response input variant matrix element."); return; }
-            
-            const responseDiv = document.getElementById('quiz-response');
-            responseDiv.style.display = "block";
-            
-            if(selected.value === "correct") {
-                responseDiv.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-circle-check"></i> Correct! MinMax scaling compresses data bounded tightly between 0 and 1, making anomalous outliers heavily skew scale weight limits.</span>`;
+        function checkQz() {
+            const ans = document.getElementById('ans'); ans.style.display = 'block';
+            if(document.getElementById('correct').checked) {
+                ans.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-circle-check"></i> Correct! MinMax scaling compresses data bounded tightly between 0 and 1.</span>`;
             } else {
-                responseDiv.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Z-Scores utilize standard variations which calculate statistical boundaries across structural datasets smoothly. Try again!</span>`;
+                ans.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Try again!</span>`;
             }
         }
 
-        function simulateExpiration() {
-            // Backdate signup timestamp 8 days into history context
-            const past = new Date().getTime() - (8 * 24 * 60 * 60 * 1000);
-            localStorage.setItem('user_created_at', past);
-            evaluateSessionAccess();
-        }
-
-        function triggerPaywall(title) {
-            document.getElementById('modal-title').innerText = "Unlock " + title;
-            document.getElementById('paywall-modal').style.display = 'flex';
-        }
+        function simulateExpiration() { localStorage.setItem('user_created_at', new Date().getTime() - (8 * 24 * 60 * 60 * 1000)); evaluateSession(); }
+        function triggerPaywall(t) { document.getElementById('modal-title').innerText = "Unlock " + t; document.getElementById('paywall-modal').style.display = 'flex'; }
         function closePaywall() { document.getElementById('paywall-modal').style.display = 'none'; }
-        function clearSystemMemory() { localStorage.clear(); window.location.reload(); }
+        function clearMemory() { localStorage.clear(); window.location.reload(); }
     </script>
 </body>
 </html>
