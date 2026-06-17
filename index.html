@@ -21,12 +21,11 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--gray-light); color: var(--text-dark); line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* App Layout Containers */
+        /* Layout Architecture */
         #auth-page { display: block; }
         #app-dashboard { display: none; }
         #expired-screen { display: none; }
 
-        /* Navigation */
         nav {
             background: white; padding: 1rem 2rem; display: flex; justify-content: space-between;
             align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
@@ -42,7 +41,6 @@
         .btn-secondary { background: transparent; color: var(--text-dark); border: 1px solid var(--border); }
         .btn-secondary:hover { background: var(--gray-light); }
 
-        /* Introduction & Auth Grid Layout */
         .auth-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; flex: 1; }
         .hero-text h1 { font-size: 3rem; color: var(--dark); line-height: 1.2; margin-bottom: 1.5rem; }
         .auth-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border); }
@@ -52,7 +50,6 @@
         .auth-toggle { margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
         .auth-toggle span { color: var(--primary); cursor: pointer; font-weight: 600; }
 
-        /* Dashboard Architecture */
         .db-container { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 65px - 40px); }
         .sidebar { background: white; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
         .trial-banner { background: #fff7ed; border: 1px solid #ffedd5; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
@@ -67,22 +64,29 @@
         .main-content { padding: 2.5rem; overflow-y: auto; background: #f1f5f9; }
         .workspace { background: white; border-radius: 12px; padding: 2.5rem; border: 1px solid var(--border); min-height: 85%; }
 
-        /* Lab Elements */
+        /* Premium Video Platform Container */
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* Lesson Interactive Navigation Tabs */
+        .lecture-tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; gap: 1rem; }
+        .tab-link { padding: 0.75rem 1rem; border: none; background: none; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); cursor: pointer; position: relative; }
+        .tab-link.active { color: var(--primary); }
+        .tab-link.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--primary); }
+        .tab-pane { display: none; background: var(--gray-light); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 2rem; }
+        .tab-pane.active { display: block; }
+
         .terminal-box { background: #0f172a; color: #38bdf8; font-family: 'Courier New', Courier, monospace; padding: 1rem; border-radius: 6px; margin-top: 1rem; font-size: 0.9rem; }
-        
-        /* Modals & Full Blockers */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 1000; }
         .paywall-modal { background: white; padding: 3rem; border-radius: 16px; max-width: 500px; width: 100%; text-align: center; position: relative; }
         .full-blocker { width: 100vw; height: 100vh; background: var(--dark); color: white; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
 
-        /* Brand Footer */
         footer { background: white; padding: 0.5rem 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); font-weight: 500; }
         footer span { color: var(--dark); font-weight: 700; letter-spacing: 0.05em; }
     </style>
 </head>
 <body>
 
-    <!-- AUTHENTICATION LAYER & PLATFORM INTRODUCTION -->
     <div id="auth-page" style="flex: 1; display: flex; flex-direction: column;">
         <nav>
             <div class="logo"><i class="fa-solid fa-brain"></i> AITrain.io</div>
@@ -99,7 +103,6 @@
                 </div>
             </div>
 
-            <!-- Signup Form Box -->
             <div class="auth-card" id="signup-box">
                 <h3>Start Your 1-Week Trial</h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Access Week 1 complete core frameworks instantly.</p>
@@ -112,7 +115,6 @@
                 <div class="auth-toggle">Already registered? <span onclick="toggleAuthMode('login')">Log In here</span></div>
             </div>
 
-            <!-- Login Form Box -->
             <div class="auth-card" id="login-box" style="display: none;">
                 <h3>Welcome Back</h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Log in to access your active learning trail states.</p>
@@ -126,7 +128,6 @@
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD WEB APP LAYER -->
     <div id="app-dashboard" style="flex: 1;">
         <nav>
             <div class="logo"><i class="fa-solid fa-brain"></i> AITrain Dashboard</div>
@@ -163,13 +164,11 @@
 
             <main class="main-content">
                 <div class="workspace" id="content-body">
-                    <!-- Week 1 Content Populated Dynamically -->
-                </div>
+                    </div>
             </main>
         </div>
     </div>
 
-    <!-- TRIAL EXPIRED SYSTEM LOCK OUT OVERLAY -->
     <div id="expired-screen" class="full-blocker">
         <div style="background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 16px; max-width: 550px; border: 1px solid rgba(255,255,255,0.1);">
             <div style="font-size: 3.5rem; color: var(--danger); margin-bottom: 1rem;"><i class="fa-solid fa-hourglass-end"></i></div>
@@ -180,7 +179,6 @@
         </div>
     </div>
 
-    <!-- PREMIUM LOCK MODAL -->
     <div class="modal-overlay" id="paywall-modal">
         <div class="paywall-modal">
             <button style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closePaywall()"><i class="fa-solid fa-xmark"></i></button>
@@ -188,11 +186,10 @@
             <h2 id="modal-title">Premium Access Required</h2>
             <p style="color: var(--text-muted); margin-top: 0.5rem;">Upgrade to unlock advanced architectures, evaluation clusters, and expert code reviews.</p>
             <div style="font-size: 2.5rem; font-weight:800; margin: 1.5rem 0;">$499</div>
-            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Stripe Interface Integration Point.')">Unlock Now</button>
+            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Stripe Interface Point.')">Unlock Now</button>
         </div>
     </div>
 
-    <!-- BRAND FOOTER BY NAMCODEX -->
     <footer>Created by <span>NAMCODEX</span></footer>
 
     <script>
@@ -200,11 +197,7 @@
         const LIMIT_MS = 7 * 24 * 60 * 60 * 1000;
 
         window.onload = function() {
-            if (localStorage.getItem('user_email')) {
-                evaluateSession();
-            } else {
-                toggleAuthMode('signup');
-            }
+            if (localStorage.getItem('user_email')) { evaluateSession(); } else { toggleAuthMode('signup'); }
         };
 
         function toggleAuthMode(mode) {
@@ -223,8 +216,7 @@
         function handleLogin(e) {
             e.preventDefault();
             if (document.getElementById('log-email').value !== localStorage.getItem('user_email')) {
-                alert("Email address not discovered in local device testing registry.");
-                return;
+                alert("Email address not discovered in local device testing registry."); return;
             }
             evaluateSession();
         }
@@ -267,17 +259,55 @@
             tick(); clockTimer = setInterval(tick, 1000);
         }
 
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-link').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            
+            document.getElementById('btn-' + tabId).classList.add('active');
+            document.getElementById('pane-' + tabId).classList.add('active');
+        }
+
+        // FULL USER EDUCATION LOGIC INJECTION
         function renderWorkspace() {
             document.getElementById('content-body').innerHTML = `
-                <div style="margin-bottom: 2rem;">
-                    <h1>Week 1: Data Preprocessing, Foundations & Evaluation Environments</h1>
-                    <p style="color:var(--text-muted);">Master data cleansing matrices, pipeline normalizations, and initial baseline configurations.</p>
+                <div style="margin-bottom: 1.5rem;">
+                    <h1 style="font-size: 1.8rem; color: var(--dark);">Week 1: Data Preprocessing & Core Baseline Models</h1>
+                    <p style="color:var(--text-muted); font-size:0.95rem;">Learn how machines clean mess data arrays before constructing baseline systems.</p>
                 </div>
+
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/jZz7MAt4w8k" title="Video Lecture" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="lecture-tabs">
+                    <button class="tab-link active" id="btn-concept" onclick="switchTab('concept')"><i class="fa-solid fa-book-open"></i> The Core Concept</button>
+                    <button class="tab-link" id="btn-vocab" onclick="switchTab('vocab')"><i class="fa-solid fa-list"></i> Simple Vocabulary</button>
+                    <button class="tab-link" id="btn-why" onclick="switchTab('why')"><i class="fa-solid fa-circle-question"></i> Why It Matters</button>
+                </div>
+
+                <div class="tab-pane active" id="pane-concept">
+                    <h4 style="margin-bottom: 0.5rem; color: var(--dark);">What is Data Preprocessing?</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-dark);">Imagine cooking a meal, but the vegetables still have dirt on them and aren't chopped. You can't cook them yet! <br><br>In AI, raw data is like dirty vegetables. It has missing values or random messy numbers. <strong>Data Preprocessing</strong> is the act of cleaning, washing, and chopping that data into neat number arrays so the AI machine can understand it smoothly.</p>
+                </div>
+
+                <div class="tab-pane" id="pane-vocab">
+                    <h4 style="margin-bottom: 0.75rem; color: var(--dark);">Simple Cheat Sheet Explanations:</h4>
+                    <ul style="padding-left: 1.25rem; font-size: 0.95rem; display:flex; flex-direction:column; gap:0.5rem;">
+                        <li><strong>NaN Values:</strong> Short for "Not a Number". This just means a piece of information is completely missing from the dataset (like an empty blank box on a form).</li>
+                        <li><strong>MinMax Scaling:</strong> Shrinking all big messy numbers down so they sit exactly between <code>0</code> and <code>1</code>. It makes processing calculations much faster for computers!</li>
+                    </ul>
+                </div>
+
+                <div class="tab-pane" id="pane-why">
+                    <h4 style="margin-bottom: 0.5rem; color: var(--dark);">Real World Application:</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-dark);">If you feed an AI bad, messy data numbers, it will output bad results. In the tech industry, engineers call this rule <strong>"Garbage In, Garbage Out"</strong>. Learning to scale data stops AI programs from crashing or rendering broken calculations.</p>
+                </div>
+
                 <div style="background:white; border:1px solid var(--border); padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
-                    <div style="display:flex; justify-content:between; align-items:center; width:100%;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
                         <div style="flex:1;">
                             <span style="background:#e0f2fe; color:#0369a1; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">LAB 1.1</span>
-                            <h3 style="margin-top:0.5rem;">Exploratory Data Pipeline Cleanups</h3>
+                            <h3 style="margin-top:0.5rem; font-size:1.1rem;">Run Data Cleaning Simulation Script</h3>
                         </div>
                         <button class="btn" onclick="document.getElementById('term').style.display='block'">Execute Script</button>
                     </div>
@@ -285,15 +315,16 @@
                         $ python3 pipeline_scalar.py<br>
                         <span style="color:#10b981;">[INFO]</span> Locating NaN matrix values... Found 14 rows missing structural array features.<br>
                         <span style="color:#10b981;">[INFO]</span> Imputing column mean matrices successfully.<br>
-                        <span style="color:#f59e0b;">[SUCCESS]</span> Normalized feature vectors scaled perfectly within ranges [-1, 1].
+                        <span style="color:#f59e0b;">[SUCCESS]</span> Normalized feature vectors scaled perfectly within ranges [0, 1].
                     </div>
                 </div>
+
                 <div style="background:white; border:1px solid var(--border); padding:1.5rem; border-radius:8px;">
                     <span style="background:#fef3c7; color:#d97706; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">QUIZ 1</span>
-                    <h3 style="margin:0.5rem 0 1rem 0;">Architecture Baseline Matrix Quiz</h3>
-                    <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.5rem;">Which data scaling technique is most vulnerable to outlier distortions?</p>
-                    <label style="display:block; margin-bottom:0.5rem;"><input type="radio" name="qz" id="wrong"> Standardizer (Z-Score variance tracking)</label>
-                    <label style="display:block; margin-bottom:1rem;"><input type="radio" name="qz" id="correct"> MinMax Scaling (Boundary target ranges)</label>
+                    <h3 style="margin:0.5rem 0 1rem 0; font-size:1.1rem;">Check Your Knowledge</h3>
+                    <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.5rem;">What ranges does MinMax scaling bind numbers between?</p>
+                    <label style="display:block; margin-bottom:0.5rem; cursor:pointer;"><input type="radio" name="qz" id="wrong"> Between -100 and +100</label>
+                    <label style="display:block; margin-bottom:1rem; cursor:pointer;"><input type="radio" name="qz" id="correct"> Between 0 and 1</label>
                     <button class="btn" onclick="checkQz()">Submit Evaluation Log</button>
                     <div id="ans" style="margin-top:1rem; font-weight:bold; display:none;"></div>
                 </div>
@@ -304,9 +335,7 @@
             const ans = document.getElementById('ans'); ans.style.display = 'block';
             if(document.getElementById('correct').checked) {
                 ans.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-circle-check"></i> Correct! MinMax scaling compresses data bounded tightly between 0 and 1.</span>`;
-            } else {
-                ans.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Try again!</span>`;
-            }
+            } else { ans.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Check the 'Simple Vocabulary' tab above and try again!</span>`; }
         }
 
         function simulateExpiration() { localStorage.setItem('user_created_at', new Date().getTime() - (8 * 24 * 60 * 60 * 1000)); evaluateSession(); }
