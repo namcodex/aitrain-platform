@@ -19,310 +19,110 @@
             --warning: #f97316;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--gray-light);
-            color: var(--text-dark);
-            line-height: 1.5;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--gray-light); color: var(--text-dark); line-height: 1.5; }
 
         /* App Layout Containers */
-        #landing-page { display: block; }
+        #auth-page { display: block; }
         #app-dashboard { display: none; }
         #expired-screen { display: none; }
 
         /* Navigation */
         nav {
-            background: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: white; padding: 1rem 2rem; display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }
         .logo i { color: var(--primary); }
 
         .btn {
-            background: var(--primary);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
+            background: var(--primary); color: white; padding: 0.6rem 1.2rem; border-radius: 6px;
+            text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: background 0.2s;
         }
-
         .btn:hover { background: var(--primary-hover); }
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-dark);
-            border: 1px solid var(--border);
-        }
-        .btn-secondary:hover {
-            background: var(--gray-light);
-        }
-        .btn-danger {
-            background: var(--danger);
-        }
-        .btn-danger:hover {
-            background: #dc2626;
-        }
+        .btn-secondary { background: transparent; color: var(--text-dark); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: var(--gray-light); }
+        .btn-danger { background: var(--danger); color: white; }
 
-        /* Hero Section */
-        .hero {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            color: var(--dark);
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .badge {
-            background: #dbeafe;
-            color: var(--primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        /* Auth Form Card */
-        .auth-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
-        }
-
-        .auth-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .auth-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1rem;
-        }
+        /* Auth Layout Switcher */
+        .auth-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-text h1 { font-size: 3rem; color: var(--dark); line-height: 1.2; margin-bottom: 1.5rem; }
+        .auth-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .form-group input { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; }
+        .auth-toggle { margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+        .auth-toggle span { color: var(--primary); cursor: pointer; font-weight: 600; }
 
         /* Dashboard Architecture */
-        .db-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            height: calc(100vh - 65px);
-        }
-
-        .sidebar {
-            background: white;
-            border-right: 1px solid var(--border);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .trial-banner {
-            background: #fff7ed;
-            border: 1px solid #ffedd5;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .trial-banner h4 { color: #c2410c; font-size: 0.9rem; margin-bottom: 0.25rem;}
-        .trial-banner p { font-size: 0.8rem; color: #7c2d12; font-family: monospace; font-weight: bold;}
-
-        /* Testing Suite Utilities Panel */
-        .tester-panel {
-            background: #f1f5f9;
-            border: 1px dashed var(--text-muted);
-            padding: 0.75rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            font-size: 0.75rem;
-        }
-
+        .db-container { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 65px); }
+        .sidebar { background: white; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
+        .trial-banner { background: #fff7ed; border: 1px solid #ffedd5; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .trial-banner h4 { color: #c2410c; font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .trial-banner p { font-size: 0.85rem; color: #7c2d12; font-family: monospace; font-weight: bold; }
+        
         .module-list { list-style: none; }
-
-        .module-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-
+        .module-item { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 0.5rem; cursor: pointer; font-weight: 500; color: var(--text-dark); }
         .module-item.active { background: #eff6ff; color: var(--primary); }
-        .module-item.locked { color: var(--text-muted); opacity: 0.7; }
+        .module-item.locked { color: var(--text-muted); opacity: 0.6; }
 
         .main-content { padding: 2.5rem; overflow-y: auto; background: #f1f5f9; }
-        .workspace { background: white; border-radius: 12px; padding: 2rem; border: 1px solid var(--border); min-height: 80%; }
+        .workspace { background: white; border-radius: 12px; padding: 2.5rem; border: 1px solid var(--border); min-height: 85%; }
 
-        /* Paywall Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .paywall-modal {
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-        }
-
-        .lock-icon {
-            width: 60px; height: 60px; background: #fee2e2; color: #ef4444;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin: 0 auto 1.5rem;
-        }
-
-        /* Full Screen Expiration Block */
-        .full-blocker {
-            width: 100vw;
-            height: 100vh;
-            background: var(--dark);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .expired-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 3rem;
-            border-radius: 16px;
-            max-width: 550px;
-            backdrop-filter: blur(10px);
-        }
+        /* Lab & Grid Content Cards */
+        .lab-card { background: var(--gray-light); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .terminal-box { background: #0f172a; color: #38bdf8; font-family: 'Courier New', Courier, monospace; padding: 1rem; border-radius: 6px; margin-top: 1rem; font-size: 0.9rem; overflow-x: auto; }
+        
+        /* Modals & Blockers */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .paywall-modal { background: white; padding: 3rem; border-radius: 16px; max-width: 500px; width: 100%; text-align: center; position: relative; }
+        .full-blocker { width: 100vw; height: 100vh; background: var(--dark); color: white; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
     </style>
 </head>
 <body>
 
-    <div id="landing-page">
+    <div id="auth-page">
         <nav>
             <div class="logo"><i class="fa-solid fa-brain"></i> AITrain.io</div>
-            <div><a href="#signup" class="btn">Get Started</a></div>
         </nav>
-
-        <section class="hero">
+        <div class="auth-container">
             <div class="hero-text">
-                <span class="badge">Enterprise-Grade Learning</span>
-                <h1>Master Machine Learning & Generative AI</h1>
-                <p>An immersive, production-focused training system designed for corporate professionals and technical builders. Learn model scaling, production pipelines, and modern deep learning architecture.</p>
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-                        <i class="fa-solid fa-circle-check" style="color: var(--success)"></i> 7-Day Full Access Trial
-                    </div>
-                </div>
+                <span style="background:#dbeafe; color:var(--primary); padding:0.4rem 0.8rem; border-radius:20px; font-size:0.85rem; font-weight:600;">Enterprise Platform</span>
+                <h1 style="margin-top:1rem;">Deploy Production Machine Learning Systems</h1>
+                <p style="color:var(--text-muted); margin-top:1rem;">Access elite corporate training tracks, cloud execution environments, and expert code analytics logs.</p>
             </div>
 
-            <div class="auth-card" id="signup">
-                <h3>Start Your 1-Week Trial</h3>
-                <p>Gain instant access to Week 1 curriculum, hands-on lab activities, and baseline models.</p>
-                <form id="trial-form" onsubmit="handleSignup(event)">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" required placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Work Email</label>
-                        <input type="email" id="email" required placeholder="john@company.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" required placeholder="••••••••">
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; padding: 0.85rem; font-size: 1rem;">Activate Free Week</button>
+            <div class="auth-card" id="signup-box">
+                <h3>Create Free Trial Account</h3>
+                <p>Get instant 7-day access to Week 1 foundational models.</p>
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="reg-name" required placeholder="John Doe"></div>
+                    <div class="form-group"><label>Work Email</label><input type="email" id="reg-email" required placeholder="john@company.com"></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="reg-pass" required placeholder="••••••••"></div>
+                    <button type="submit" class="btn" style="width: 100%; padding:0.8rem;">Activate Trial Block</button>
                 </form>
+                <div class="auth-toggle">Already registered? <span onclick="toggleAuthMode('login')">Log In here</span></div>
             </div>
-        </section>
+
+            <div class="auth-card" id="login-box" style="display: none;">
+                <h3>Welcome Back</h3>
+                <p>Log in to access your current active training pipeline profile.</p>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group"><label>Work Email</label><input type="email" id="log-email" required placeholder="john@company.com"></div>
+                    <div class="form-group"><label>Password</label><input type="password" id="log-pass" required placeholder="••••••••"></div>
+                    <button type="submit" class="btn" style="width: 100%; padding:0.8rem;">Secure Login</button>
+                </form>
+                <div class="auth-toggle">Need an account? <span onclick="toggleAuthMode('signup')">Sign Up free</span></div>
+            </div>
+        </div>
     </div>
 
     <div id="app-dashboard">
         <nav>
             <div class="logo"><i class="fa-solid fa-brain"></i> AITrain Dashboard</div>
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <span id="user-display" style="font-weight: 600; font-size: 0.95rem;"></span>
-                <button onclick="logout()" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Logout</button>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <span id="user-display" style="font-weight: 600;"></span>
+                <button onclick="handleLogout()" class="btn btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
             </div>
         </nav>
 
@@ -330,41 +130,24 @@
             <aside class="sidebar">
                 <div>
                     <div class="trial-banner" id="timer-banner-box">
-                        <h4 id="timer-title"><i class="fa-solid fa-clock"></i> Time Remaining</h4>
+                        <h4><i class="fa-solid fa-clock"></i> Trial Window Status</h4>
                         <p id="countdown-clock">07d 00h 00m 00s</p>
                     </div>
                     
-                    <h3 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.75rem;">Curriculum Map</h3>
+                    <h3 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">Curriculum Map</h3>
                     <ul class="module-list">
-                        <li class="module-item active" onclick="loadModule('week1')">
-                            <span>Week 1: Foundations & Labs</span>
-                            <i class="fa-solid fa-circle-play" style="color: var(--primary)"></i>
-                        </li>
-                        <li class="module-item locked" onclick="triggerPaywall('Week 2: Advanced Deep Learning Architectures')">
-                            <span>Week 2: Deep Learning</span>
-                            <i class="fa-solid fa-lock"></i>
-                        </li>
-                        <li class="module-item locked" onclick="triggerPaywall('Week 3: Large Language Models & GenAI Production')">
-                            <span>Week 3: Generative AI & LLMs</span>
-                            <i class="fa-solid fa-lock"></i>
-                        </li>
-                        <li class="module-item locked" onclick="triggerPaywall('Week 4: MLOps, Pipelines & Capstone Project')">
-                            <span>Week 4: MLOps & Capstone</span>
-                            <i class="fa-solid fa-lock"></i>
-                        </li>
+                        <li class="module-item active" id="mod-w1" onclick="switchSidebarTab('week1')"><span>Week 1: Foundations</span><i class="fa-solid fa-circle-play" style="color:var(--primary)"></i></li>
+                        <li class="module-item locked" onclick="triggerPaywall('Week 2: Deep Learning Architectures')"><span>Week 2: Deep Learning</span><i class="fa-solid fa-lock"></i></li>
+                        <li class="module-item locked" onclick="triggerPaywall('Week 3: Generative AI & LLMs')"><span>Week 3: GenAI & LLMs</span><i class="fa-solid fa-lock"></i></li>
+                        <li class="module-item locked" onclick="triggerPaywall('Week 4: MLOps Pipelines')"><span>Week 4: MLOps & Capstone</span><i class="fa-solid fa-lock"></i></li>
                     </ul>
                 </div>
-                
-                <div>
-                    <button class="btn" onclick="triggerPaywall('Full Curriculum Access Plan')" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <i class="fa-solid fa-bolt"></i> Unlock Full Syllabus
-                    </button>
 
-                    <div class="tester-panel">
-                        <strong style="color: var(--dark); display:block; margin-bottom:0.25rem;"><i class="fa-solid fa-flask"></i> Prototype Testing Controls:</strong>
-                        <p style="margin-bottom:0.5rem; color: var(--text-muted);">Simulate account aging without waiting 7 days:</p>
-                        <button class="btn btn-secondary" onclick="simulateTimeAge(6)" style="font-size:0.7rem; padding: 0.2rem 0.4rem; margin-bottom:0.25rem;">Fast-Forward to Day 6</button>
-                        <button class="btn btn-danger" onclick="simulateTimeAge(8)" style="font-size:0.7rem; padding: 0.2rem 0.4rem; color: white;">Force Expire (Day 8)</button>
+                <div>
+                    <button class="btn" onclick="triggerPaywall('Full Curriculum Access Plan')" style="width:100%; margin-bottom:1rem;"><i class="fa-solid fa-bolt"></i> Upgrade to Premium</button>
+                    <div style="background:#f1f5f9; padding:0.5rem; border-radius:6px; font-size:0.7rem; border:1px dashed var(--text-muted);">
+                        <strong>Testing Tools:</strong><br>
+                        <span style="color:var(--danger); cursor:pointer; font-weight:bold;" onclick="simulateExpiration()">[Simulate 7-Day Expiration Lockout]</span>
                     </div>
                 </div>
             </aside>
@@ -377,171 +160,193 @@
     </div>
 
     <div id="expired-screen" class="full-blocker">
-        <div class="expired-card">
+        <div style="background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 16px; max-width: 550px; border: 1px solid rgba(255,255,255,0.1);">
             <div style="font-size: 3.5rem; color: var(--danger); margin-bottom: 1rem;"><i class="fa-solid fa-hourglass-end"></i></div>
-            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Your 1-Week Trial Has Expired</h2>
-            <p style="color: #94a3b8; margin-bottom: 2rem; font-size: 1.05rem;">Your corporate training access profile has been paused. To restore sandbox features, compute environments, and modules 2 through 4, please upgrade to a full account tier.</p>
-            
-            <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
-                <h4 style="color: var(--success); margin-bottom: 0.5rem;"><i class="fa-solid fa-unlock"></i> Upgrading unlocks instantly:</h4>
-                <div style="font-size: 0.9rem; margin-bottom: 0.25rem;">• Lifetime production dashboard access</div>
-                <div style="font-size: 0.9rem; margin-bottom: 0.25rem;">• 12 Hands-on Jupyter Lab Sandbox runtime profiles</div>
-                <div style="font-size: 0.9rem;">• Official AI Engineer Certification registry path</div>
-            </div>
-
-            <button class="btn" style="width: 100%; padding: 1rem; font-size: 1.1rem; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);" onclick="alert('Stripe Interface Integration Point.')">Purchase Full Program Access ($499)</button>
-            <button class="btn btn-secondary" onclick="resetTrialComplete()" style="margin-top: 1rem; font-size: 0.8rem; color: #94a3b8; border-color: rgba(255,255,255,0.2);">Reset Trial Account (Test Again)</button>
+            <h2>Your 1-Week Trial Has Expired</h2>
+            <p style="color: #94a3b8; margin: 1.5rem 0;">To unlock runtime sandboxes, grading profiles, and access advanced modules (Weeks 2-4), please upgrade your profile registration tier.</p>
+            <button class="btn" style="width: 100%; padding:1rem;" onclick="alert('Payment processing system redirect point.')">Purchase Full Program Access ($499)</button>
+            <p style="margin-top:1.5rem; font-size:0.8rem; color:#64748b; cursor:pointer;" onclick="clearSystemMemory()">[Clear Account Memory & Start Fresh]</p>
         </div>
     </div>
 
     <div class="modal-overlay" id="paywall-modal">
         <div class="paywall-modal">
-            <button class="close-modal" onclick="closePaywall()"><i class="fa-solid fa-xmark"></i></button>
+            <button style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closePaywall()"><i class="fa-solid fa-xmark"></i></button>
             <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
-            <h2 id="modal-title">Unlock Premium Curriculum</h2>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">Your 1-week trial includes complete access to Module 1. Upgrade to unlock all advanced models.</p>
-            <div class="price-tag" style="font-size: 2.5rem; font-weight: 800; margin: 1.5rem 0;">$499<span style="font-size: 1rem; color: var(--text-muted);"> / full access</span></div>
-            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Payment processing mockup.')">Upgrade Registration</button>
+            <h2 id="modal-title">Premium Access Required</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">This module is blocked on your trial profile plan tier. Upgrade to unlock all advanced models, deployment instances, and code grading pipelines.</p>
+            <div style="font-size: 2.5rem; font-weight:800; margin: 1.5rem 0;">$499 <span style="font-size:1rem; color:var(--text-muted); font-weight:400;">/ full license</span></div>
+            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Stripe redirect confirmation.')">Upgrade Profile Plan</button>
         </div>
     </div>
 
     <script>
-        let countdownInterval;
-        const TRIAL_DURATION_MS = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+        let clockTimer;
+        const LIMIT_MS = 7 * 24 * 60 * 60 * 1000;
 
-        // Core App Module Matrix
-        const curriculumData = {
-            week1: {
-                title: "Week 1: Data Preprocessing, Foundations & Evaluation Environments",
-                desc: "Welcome to your active learning trial week. Below are your open framework training pipelines."
-            }
-        };
-
-        // Check login status and active time window instantly when index.html loads
+        // Automatically boot context profiles on script compilation entry
         window.onload = function() {
-            if (localStorage.getItem('aitrain_user')) {
-                checkTrialStatus();
+            if (localStorage.getItem('user_email')) {
+                evaluateSessionAccess();
+            } else {
+                toggleAuthMode('signup');
             }
         };
 
-        function handleSignup(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            
-            // Set session registration timestamps
-            const registrationTime = new Date().getTime();
-            localStorage.setItem('aitrain_user', name);
-            localStorage.setItem('aitrain_signup_time', registrationTime);
-            
-            checkTrialStatus();
+        function toggleAuthMode(mode) {
+            document.getElementById('signup-box').style.display = mode === 'signup' ? 'block' : 'none';
+            document.getElementById('login-box').style.display = mode === 'login' ? 'block' : 'none';
         }
 
-        function checkTrialStatus() {
-            const name = localStorage.getItem('aitrain_user');
-            const signupTime = parseInt(localStorage.getItem('aitrain_signup_time'), 10);
-            const currentTime = new Date().getTime();
+        function handleSignup(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
             
-            const timeElapsed = currentTime - signupTime;
+            localStorage.setItem('user_name', name);
+            localStorage.setItem('user_email', email);
+            localStorage.setItem('user_created_at', new Date().getTime());
             
-            // IF TIME EXCEEDED: Hard Blocker
-            if (timeElapsed >= TRIAL_DURATION_MS) {
-                showExpiredScreen();
+            evaluateSessionAccess();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('log-email').value;
+            const savedEmail = localStorage.getItem('user_email');
+
+            if (email !== savedEmail) {
+                alert("Account profile matching that email could not be located in this local device registry scratchpad.");
+                return;
+            }
+            evaluateSessionAccess();
+        }
+
+        function handleLogout() {
+            clearInterval(clockTimer);
+            document.getElementById('app-dashboard').style.display = 'none';
+            document.getElementById('auth-page').style.display = 'block';
+            toggleAuthMode('login');
+        }
+
+        function evaluateSessionAccess() {
+            const signupTime = parseInt(localStorage.getItem('user_created_at'), 10);
+            const delta = new Date().getTime() - signupTime;
+
+            if (delta >= LIMIT_MS) {
+                document.getElementById('auth-page').style.display = 'none';
+                document.getElementById('app-dashboard').style.display = 'none';
+                document.getElementById('expired-screen').style.display = 'flex';
                 return;
             }
 
-            // IF TIME OK: Boot Dashboard
-            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('auth-page').style.display = 'none';
             document.getElementById('expired-screen').style.display = 'none';
             document.getElementById('app-dashboard').style.display = 'block';
-            document.getElementById('user-display').innerText = `👋 ${name} (Trial)`;
+            document.getElementById('user-display').innerText = `👤 ${localStorage.getItem('user_name')} (Trial Account)`;
             
-            loadModule('week1');
-            startClock(signupTime);
+            runLiveClockEngine(signupTime);
+            renderWeek1Workspace();
         }
 
-        function startClock(signupTime) {
-            clearInterval(countdownInterval);
-            
-            function updateClock() {
+        function runLiveClockEngine(signupTime) {
+            clearInterval(clockTimer);
+            function renderTick() {
                 const now = new Date().getTime();
-                const timeLeft = (signupTime + TRIAL_DURATION_MS) - now;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    showExpiredScreen();
+                const remainder = (signupTime + LIMIT_MS) - now;
+
+                if (remainder <= 0) {
+                    clearInterval(clockTimer);
+                    evaluateSessionAccess();
                     return;
                 }
 
-                // Time math calculations
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                const d = Math.floor(remainder / (1000*60*60*24));
+                const h = Math.floor((remainder % (1000*60*60*24)) / (1000*60*60));
+                const m = Math.floor((remainder % (1000*60*60)) / (1000*60));
+                const s = Math.floor((remainder % (1000*60)) / 1000);
 
-                // Format leading zeros
-                const format = (num) => String(num).padStart(2, '0');
-                
-                document.getElementById('countdown-clock').innerText = `${format(days)}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s`;
-                
-                // UX Warning UI adjustment if less than 24 hours left
-                if (days === 0) {
-                    const banner = document.getElementById('timer-banner-box');
-                    banner.style.background = '#fef2f2';
-                    banner.style.borderColor = '#fee2e2';
-                    document.getElementById('timer-title').style.color = 'var(--danger)';
-                    document.getElementById('countdown-clock').style.color = 'var(--danger)';
-                }
+                const zeroPad = (val) => String(val).padStart(2, '0');
+                document.getElementById('countdown-clock').innerText = `${zeroPad(d)}d ${zeroPad(h)}h ${zeroPad(m)}m ${zeroPad(s)}s`;
             }
-
-            updateClock();
-            countdownInterval = setInterval(updateClock, 1000);
+            renderTick();
+            clockTimer = setInterval(renderTick, 1000);
         }
 
-        function showExpiredScreen() {
-            clearInterval(countdownInterval);
-            document.getElementById('landing-page').style.display = 'none';
-            document.getElementById('app-dashboard').style.display = 'none';
-            document.getElementById('expired-screen').style.display = 'flex';
-        }
-
-        function loadModule(moduleId) {
-            const data = curriculumData[moduleId];
-            if(!data) return;
-
+        // FULL WEEK 1 DATA POPULATION LOGIC ENGINE
+        function renderWeek1Workspace() {
             document.getElementById('content-body').innerHTML = `
-                <h1 style="color: var(--dark); margin-bottom: 0.5rem;">${data.title}</h1>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">${data.desc}</p>
-                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary);">
-                    <h3 style="color: var(--primary); font-size: 1rem; margin-bottom: 0.25rem;"><i class="fa-solid fa-circle-info"></i> Active Lab Space</h3>
-                    <p style="font-size: 0.9rem; color: #1e40af;">Your 7-day computational window has registered correctly. Week 1 core assets are active.</p>
+                <div style="margin-bottom: 2rem;">
+                    <h1 style="color: var(--dark); font-size: 2rem;">Week 1: Data Preprocessing, Foundations & Evaluation Environments</h1>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem;">Master data cleansing matrices, pipeline normalizations, and initial baseline algorithmic configurations.</p>
+                </div>
+
+                <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <span style="background:#e0f2fe; color:#0369a1; padding:0.25rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">LAB 1.1</span>
+                            <h3 style="margin-top:0.5rem; font-size:1.1rem;">Exploratory Data Pipeline Cleanups & Scaling Matrix Structures</h3>
+                        </div>
+                        <button class="btn btn-secondary" onclick="runSandboxSimulation()">Execute Script</button>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Objective: Clean missing feature labels and map array matrices using standardized scalar normalization profiles.</p>
+                    <div id="sandbox-output" style="display: none;">
+                        <div class="terminal-box">
+                            $ python3 pipeline_scalar.py<br>
+                            <span style="color:#10b981;">[INFO]</span> Initializing Data Preprocessing Stream Pipeline...<br>
+                            <span style="color:#10b981;">[INFO]</span> Locating NaN matrix values... Found 14 rows missing structural array features.<br>
+                            <span style="color:#10b981;">[INFO]</span> Imputing column mean matrices successfully.<br>
+                            <span style="color:#f59e0b;">[SUCCESS]</span> Normalized feature vectors scaled perfectly within ranges [-1, 1].
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
+                    <span style="background:#fef3c7; color:#d97706; padding:0.25rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:700;">QUIZ 1</span>
+                    <h3 style="margin-top:0.5rem; font-size:1.1rem; margin-bottom:1rem;">Architecture Baseline Evaluation Matrix Quiz</h3>
+                    
+                    <div id="quiz-block">
+                        <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.75rem;">Which data scaling technique is most vulnerable to outlier distortions?</p>
+                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem; cursor:pointer;"><input type="radio" name="quiz1" value="wrong"> Standardizer (Z-Score variance tracking)</label>
+                        <label style="display:block; margin-bottom:1rem; font-size:0.9rem; cursor:pointer;"><input type="radio" name="quiz1" value="correct"> MinMax Scaling (Boundary target ranges)</label>
+                        <button class="btn" onclick="evaluateQuizAnswers()">Submit Evaluation Log</button>
+                    </div>
+                    <div id="quiz-response" style="margin-top:1rem; font-weight:bold; display:none;"></div>
                 </div>
             `;
         }
 
-        /* SIMULATION UTILITIES FOR PROTOTYPE TESTING */
-        function simulateTimeAge(daysToSimulate) {
-            // Subtract time backwards into history to fake aging
-            const fakePastTimestamp = new Date().getTime() - (daysToSimulate * 24 * 60 * 60 * 1000);
-            localStorage.setItem('aitrain_signup_time', fakePastTimestamp);
-            checkTrialStatus();
+        function runSandboxSimulation() {
+            document.getElementById('sandbox-output').style.display = 'block';
         }
 
-        function resetTrialComplete() {
-            localStorage.clear();
-            clearInterval(countdownInterval);
-            document.getElementById('expired-screen').style.display = 'none';
-            document.getElementById('app-dashboard').style.display = 'none';
-            document.getElementById('landing-page').style.display = 'block';
-            document.getElementById('trial-form').reset();
+        function evaluateQuizAnswers() {
+            const selected = document.querySelector('input[name="quiz1"]:checked');
+            if(!selected) { alert("Please select a tracking response input variant matrix element."); return; }
+            
+            const responseDiv = document.getElementById('quiz-response');
+            responseDiv.style.display = "block";
+            
+            if(selected.value === "correct") {
+                responseDiv.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-circle-check"></i> Correct! MinMax scaling compresses data bounded tightly between 0 and 1, making anomalous outliers heavily skew scale weight limits.</span>`;
+            } else {
+                responseDiv.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Z-Scores utilize standard variations which calculate statistical boundaries across structural datasets smoothly. Try again!</span>`;
+            }
+        }
+
+        function simulateExpiration() {
+            // Backdate signup timestamp 8 days into history context
+            const past = new Date().getTime() - (8 * 24 * 60 * 60 * 1000);
+            localStorage.setItem('user_created_at', past);
+            evaluateSessionAccess();
         }
 
         function triggerPaywall(title) {
             document.getElementById('modal-title').innerText = "Unlock " + title;
             document.getElementById('paywall-modal').style.display = 'flex';
         }
-
         function closePaywall() { document.getElementById('paywall-modal').style.display = 'none'; }
-        function logout() { resetTrialComplete(); }
+        function clearSystemMemory() { localStorage.clear(); window.location.reload(); }
     </script>
 </body>
 </html>
