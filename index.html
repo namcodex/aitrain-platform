@@ -21,11 +21,12 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--gray-light); color: var(--text-dark); line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* Layout Architecture */
+        /* Application State Blocks */
         #auth-page { display: block; }
         #app-dashboard { display: none; }
         #expired-screen { display: none; }
 
+        /* Shared Global Nav */
         nav {
             background: white; padding: 1rem 2rem; display: flex; justify-content: space-between;
             align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
@@ -41,6 +42,7 @@
         .btn-secondary { background: transparent; color: var(--text-dark); border: 1px solid var(--border); }
         .btn-secondary:hover { background: var(--gray-light); }
 
+        /* Introduction & Auth Grid Panel */
         .auth-container { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; flex: 1; }
         .hero-text h1 { font-size: 3rem; color: var(--dark); line-height: 1.2; margin-bottom: 1.5rem; }
         .auth-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border); }
@@ -50,6 +52,7 @@
         .auth-toggle { margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
         .auth-toggle span { color: var(--primary); cursor: pointer; font-weight: 600; }
 
+        /* Dashboard Framework grid */
         .db-container { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 65px - 40px); }
         .sidebar { background: white; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
         .trial-banner { background: #fff7ed; border: 1px solid #ffedd5; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
@@ -64,11 +67,11 @@
         .main-content { padding: 2.5rem; overflow-y: auto; background: #f1f5f9; }
         .workspace { background: white; border-radius: 12px; padding: 2.5rem; border: 1px solid var(--border); min-height: 85%; }
 
-        /* Premium Video Platform Container */
+        /* Video System Frame */
         .video-container { position: relative; width: 100%; padding-bottom: 56.25%; margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* Lesson Interactive Navigation Tabs */
+        /* Theory Tabs Navigation */
         .lecture-tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; gap: 1rem; }
         .tab-link { padding: 0.75rem 1rem; border: none; background: none; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); cursor: pointer; position: relative; }
         .tab-link.active { color: var(--primary); }
@@ -81,6 +84,7 @@
         .paywall-modal { background: white; padding: 3rem; border-radius: 16px; max-width: 500px; width: 100%; text-align: center; position: relative; }
         .full-blocker { width: 100vw; height: 100vh; background: var(--dark); color: white; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
 
+        /* Platform Footer Credits */
         footer { background: white; padding: 0.5rem 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); font-weight: 500; }
         footer span { color: var(--dark); font-weight: 700; letter-spacing: 0.05em; }
     </style>
@@ -94,30 +98,30 @@
         </nav>
         <div class="auth-container">
             <div class="hero-text">
-                <span style="background:#dbeafe; color:var(--primary); padding:0.4rem 0.8rem; border-radius:20px; font-size:0.85rem; font-weight:600;">Corporate Training Hub</span>
-                <h1 style="margin-top:1rem;">Master Machine Learning & AI Architectures</h1>
-                <p style="color:var(--text-muted); margin-top:1rem;">An immersive, production-focused environment built for corporate teams and technical builders. Learn model preprocessing, scaling pipelines, and modern deep learning frameworks hands-on.</p>
+                <span style="background:#dbeafe; color:var(--primary); padding:0.4rem 0.8rem; border-radius:20px; font-size:0.85rem; font-weight:600;">Corporate Training Track</span>
+                <h1 style="margin-top:1rem;">Master Machine Learning From Absolute Zero</h1>
+                <p style="color:var(--text-muted); margin-top:1rem;">An immersive, intuitive platform built for new learners and corporate teams. Watch clear explanations, read plain-English vocabulary guides, and test basic AI configuration components safely inside an interactive sandbox sandbox environment.</p>
                 <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; font-weight: 600; font-size: 0.95rem;">
-                    <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> 7-Day Free Trial</span>
-                    <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> No Credit Card Required</span>
+                    <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> 7-Day Free Trial Access</span>
+                    <span><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Zero-Knowledge Friendly</span>
                 </div>
             </div>
 
             <div class="auth-card" id="signup-box">
                 <h3>Start Your 1-Week Trial</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Access Week 1 complete core frameworks instantly.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Access Week 1 complete core modules instantly.</p>
                 <form onsubmit="handleSignup(event)">
                     <div class="form-group"><label>Full Name</label><input type="text" id="reg-name" required placeholder="John Doe"></div>
                     <div class="form-group"><label>Work Email</label><input type="email" id="reg-email" required placeholder="john@company.com"></div>
                     <div class="form-group"><label>Password</label><input type="password" id="reg-pass" required placeholder="••••••••"></div>
-                    <button type="submit" class="btn" style="width: 100%; padding:0.8rem;">Activate Trial Profile</button>
+                    <button type="submit" class="btn" style="width: 100%; padding:0.8rem;">Activate Trial Profile Plan</button>
                 </form>
                 <div class="auth-toggle">Already registered? <span onclick="toggleAuthMode('login')">Log In here</span></div>
             </div>
 
             <div class="auth-card" id="login-box" style="display: none;">
                 <h3>Welcome Back</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Log in to access your active learning trail states.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Log in to access your active training state paths.</p>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group"><label>Work Email</label><input type="email" id="log-email" required placeholder="john@company.com"></div>
                     <div class="form-group"><label>Password</label><input type="password" id="log-pass" required placeholder="••••••••"></div>
@@ -155,7 +159,7 @@
                 </div>
 
                 <div>
-                    <button class="btn" onclick="triggerPaywall('Full Access Package')" style="width:100%; margin-bottom:1rem;"><i class="fa-solid fa-bolt"></i> Upgrade to Premium</button>
+                    <button class="btn" onclick="triggerPaywall('Full Access Program Upgrade')" style="width:100%; margin-bottom:1rem;"><i class="fa-solid fa-bolt"></i> Upgrade to Premium</button>
                     <div style="background:#f1f5f9; padding:0.5rem; border-radius:6px; font-size:0.7rem; border:1px dashed var(--text-muted); text-align:center;">
                         <span style="color:var(--danger); cursor:pointer; font-weight:bold;" onclick="simulateExpiration()">[Test 7-Day Expire Lock]</span>
                     </div>
@@ -173,8 +177,8 @@
         <div style="background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 16px; max-width: 550px; border: 1px solid rgba(255,255,255,0.1);">
             <div style="font-size: 3.5rem; color: var(--danger); margin-bottom: 1rem;"><i class="fa-solid fa-hourglass-end"></i></div>
             <h2>Your 1-Week Trial Has Expired</h2>
-            <p style="color: #94a3b8; margin: 1.5rem 0;">Your active runtime profile has been paused. Upgrade to unlock weeks 2-4 and restore sandbox processing spaces.</p>
-            <button class="btn" style="width: 100%; padding:1rem;" onclick="alert('Payment checkpoint.')">Purchase Full Program Access ($499)</button>
+            <p style="color: #94a3b8; margin: 1.5rem 0;">Your training platform profile baseline sandbox track allocation has hit its limit. Upgrade to regain model configurations access paths.</p>
+            <button class="btn" style="width: 100%; padding:1rem;" onclick="alert('Payment pipeline portal redirection placeholder context.')">Purchase Full Program Access ($499)</button>
             <p style="margin-top:1.5rem; font-size:0.8rem; color:#64748b; cursor:pointer;" onclick="clearMemory()">[Reset Sandbox Profile Memory]</p>
         </div>
     </div>
@@ -184,9 +188,9 @@
             <button style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closePaywall()"><i class="fa-solid fa-xmark"></i></button>
             <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
             <h2 id="modal-title">Premium Access Required</h2>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">Upgrade to unlock advanced architectures, evaluation clusters, and expert code reviews.</p>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Upgrade to unlock advanced curriculum models, custom code execution profiles, and analytics pipelines.</p>
             <div style="font-size: 2.5rem; font-weight:800; margin: 1.5rem 0;">$499</div>
-            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Stripe Interface Point.')">Unlock Now</button>
+            <button class="btn" style="width: 100%; padding: 1rem;" onclick="alert('Stripe Interface Endpoint Redirection.')">Unlock Plan Track Tier</button>
         </div>
     </div>
 
@@ -216,7 +220,7 @@
         function handleLogin(e) {
             e.preventDefault();
             if (document.getElementById('log-email').value !== localStorage.getItem('user_email')) {
-                alert("Email address not discovered in local device testing registry."); return;
+                alert("Email profile data elements could not be extracted out of localized memory registers."); return;
             }
             evaluateSession();
         }
@@ -267,16 +271,16 @@
             document.getElementById('pane-' + tabId).classList.add('active');
         }
 
-        // FULL USER EDUCATION LOGIC INJECTION
+        // CONTENT BODY MANAGEMENT WITH EMBEDDED INTRODUCTORY EDUCATION SYSTEM
         function renderWorkspace() {
             document.getElementById('content-body').innerHTML = `
                 <div style="margin-bottom: 1.5rem;">
-                    <h1 style="font-size: 1.8rem; color: var(--dark);">Week 1: Data Preprocessing & Core Baseline Models</h1>
-                    <p style="color:var(--text-muted); font-size:0.95rem;">Learn how machines clean mess data arrays before constructing baseline systems.</p>
+                    <h1 style="font-size: 1.8rem; color: var(--dark);">Week 1: Data Preprocessing & Core Systems Foundations</h1>
+                    <p style="color:var(--text-muted); font-size:0.95rem;">Learn how machines organize and prepare messy structural dataset matrix blocks before training operations happen.</p>
                 </div>
 
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/jZz7MAt4w8k" title="Video Lecture" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/jZz7MAt4w8k" title="AITrain Lecture Framework" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
 
                 <div class="lecture-tabs">
@@ -287,27 +291,27 @@
 
                 <div class="tab-pane active" id="pane-concept">
                     <h4 style="margin-bottom: 0.5rem; color: var(--dark);">What is Data Preprocessing?</h4>
-                    <p style="font-size: 0.95rem; color: var(--text-dark);">Imagine cooking a meal, but the vegetables still have dirt on them and aren't chopped. You can't cook them yet! <br><br>In AI, raw data is like dirty vegetables. It has missing values or random messy numbers. <strong>Data Preprocessing</strong> is the act of cleaning, washing, and chopping that data into neat number arrays so the AI machine can understand it smoothly.</p>
+                    <p style="font-size: 0.95rem; color: var(--text-dark);">Imagine cooking a meal, but your vegetables are straight from the garden—covered in dirt, unpeeled, and unchopped. You wouldn't throw them right into a hot pan! <br><br>In AI engineering, raw data is exactly like those dirty vegetables. It can have missing entries, uneven formatting, or messy spacing. <strong>Data Preprocessing</strong> is the mandatory cleaning phase where we wash, format, and prepare numbers so that our Machine Learning models can read them smoothly without crashing.</p>
                 </div>
 
                 <div class="tab-pane" id="pane-vocab">
                     <h4 style="margin-bottom: 0.75rem; color: var(--dark);">Simple Cheat Sheet Explanations:</h4>
                     <ul style="padding-left: 1.25rem; font-size: 0.95rem; display:flex; flex-direction:column; gap:0.5rem;">
-                        <li><strong>NaN Values:</strong> Short for "Not a Number". This just means a piece of information is completely missing from the dataset (like an empty blank box on a form).</li>
-                        <li><strong>MinMax Scaling:</strong> Shrinking all big messy numbers down so they sit exactly between <code>0</code> and <code>1</code>. It makes processing calculations much faster for computers!</li>
+                        <li><strong>NaN Values:</strong> Short for "Not a Number". This means a piece of structural data is completely missing (like an empty blank field on a client signup form).</li>
+                        <li><strong>MinMax Scaling:</strong> Shrinking wild numbers down so they all sit neatly balanced directly between <code>0</code> and <code>1</code>. This makes computer mathematical calculations significantly quicker!</li>
                     </ul>
                 </div>
 
                 <div class="tab-pane" id="pane-why">
                     <h4 style="margin-bottom: 0.5rem; color: var(--dark);">Real World Application:</h4>
-                    <p style="font-size: 0.95rem; color: var(--text-dark);">If you feed an AI bad, messy data numbers, it will output bad results. In the tech industry, engineers call this rule <strong>"Garbage In, Garbage Out"</strong>. Learning to scale data stops AI programs from crashing or rendering broken calculations.</p>
+                    <p style="font-size: 0.95rem; color: var(--text-dark);">If you supply a model with broken, dirty data parameters, it will always provide incorrect predictions. Technical engineers refer to this fundamental rule as <strong>"Garbage In, Garbage Out"</strong>. Learning how data metrics normalize protects corporate business pipelines from scaling failure.</p>
                 </div>
 
                 <div style="background:white; border:1px solid var(--border); padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
                     <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
                         <div style="flex:1;">
                             <span style="background:#e0f2fe; color:#0369a1; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">LAB 1.1</span>
-                            <h3 style="margin-top:0.5rem; font-size:1.1rem;">Run Data Cleaning Simulation Script</h3>
+                            <h3 style="margin-top:0.5rem; font-size:1.1rem;">Run Data Preprocessing Simulation Script</h3>
                         </div>
                         <button class="btn" onclick="document.getElementById('term').style.display='block'">Execute Script</button>
                     </div>
@@ -321,10 +325,10 @@
 
                 <div style="background:white; border:1px solid var(--border); padding:1.5rem; border-radius:8px;">
                     <span style="background:#fef3c7; color:#d97706; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:700;">QUIZ 1</span>
-                    <h3 style="margin:0.5rem 0 1rem 0; font-size:1.1rem;">Check Your Knowledge</h3>
-                    <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.5rem;">What ranges does MinMax scaling bind numbers between?</p>
-                    <label style="display:block; margin-bottom:0.5rem; cursor:pointer;"><input type="radio" name="qz" id="wrong"> Between -100 and +100</label>
-                    <label style="display:block; margin-bottom:1rem; cursor:pointer;"><input type="radio" name="qz" id="correct"> Between 0 and 1</label>
+                    <h3 style="margin:0.5rem 0 1rem 0; font-size:1.1rem;">Check Your Knowledge Baseline</h3>
+                    <p style="font-weight:600; font-size:0.95rem; margin-bottom:0.5rem;">What ranges does MinMax scaling compress mathematical values between?</p>
+                    <label style="display:block; margin-bottom:0.5rem; cursor:pointer;"><input type="radio" name="qz" id="wrong"> Between -100 and +100 bounds</label>
+                    <label style="display:block; margin-bottom:1rem; cursor:pointer;"><input type="radio" name="qz" id="correct"> Bounded tightly between 0 and 1</label>
                     <button class="btn" onclick="checkQz()">Submit Evaluation Log</button>
                     <div id="ans" style="margin-top:1rem; font-weight:bold; display:none;"></div>
                 </div>
@@ -335,7 +339,7 @@
             const ans = document.getElementById('ans'); ans.style.display = 'block';
             if(document.getElementById('correct').checked) {
                 ans.innerHTML = `<span style="color:var(--success);"><i class="fa-solid fa-circle-check"></i> Correct! MinMax scaling compresses data bounded tightly between 0 and 1.</span>`;
-            } else { ans.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Check the 'Simple Vocabulary' tab above and try again!</span>`; }
+            } else { ans.innerHTML = `<span style="color:var(--danger);"><i class="fa-solid fa-circle-xmark"></i> Incorrect. Review the information tabs above and try your selection path variant again!</span>`; }
         }
 
         function simulateExpiration() { localStorage.setItem('user_created_at', new Date().getTime() - (8 * 24 * 60 * 60 * 1000)); evaluateSession(); }
